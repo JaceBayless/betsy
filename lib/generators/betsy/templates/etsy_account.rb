@@ -1,0 +1,2 @@
+class EtsyAccount < ApplicationRecord
+end
