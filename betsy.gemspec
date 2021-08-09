@@ -29,9 +29,10 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
+  spec.add_development_dependency("rails")
+  spec.add_development_dependency("rake")
   spec.add_development_dependency("standard", "~> 1.1.7")
   spec.add_development_dependency("rspec", "~> 3.10")
-  spec.add_development_dependency("activerecord", "~> 4.0.0")
   spec.add_development_dependency("sqlite3")
   spec.add_development_dependency("webmock", "~> 3.13.0")
 
