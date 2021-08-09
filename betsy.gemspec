@@ -35,6 +35,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency("rspec", "~> 3.10")
   spec.add_development_dependency("sqlite3")
   spec.add_development_dependency("webmock", "~> 3.13.0")
+  spec.add_development_dependency("coveralls")
 
   spec.add_dependency("faraday", "1.5.1")
 
