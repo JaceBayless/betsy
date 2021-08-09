@@ -1,3 +1,6 @@
+[![RubyGem](https://img.shields.io/gem/v/betsy.svg)](https://rubygems.org/gems/betsy)
+[![Build Status](https://app.travis-ci.com/JaceBayless/betsy.svg?branch=main)](https://app.travis-ci.com/JaceBayless/betsy)
+[![Coverage Status](https://coveralls.io/repos/github/JaceBayless/betsy/badge.svg?branch=main)](https://coveralls.io/github/JaceBayless/betsy?branch=main)
 [![Maintainability](https://api.codeclimate.com/v1/badges/11674e695f86e7507fb9/maintainability)](https://codeclimate.com/github/JaceBayless/betsy/maintainability)
 
 # Betsy
