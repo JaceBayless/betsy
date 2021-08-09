@@ -32,6 +32,12 @@ describe Betsy::Model do
     it "creates a method for accessing an attribute" do
       expect(Betsy::Test.new.methods).to include(:test_attr)
     end
+
+    it "properly returns the value when the method is called" do
+      stub_request(:any, "https://openapi.etsy.com/endpoint")
+        .to_return(body: '{"test_attr": "test"}', status: 200)
+      expect(Betsy::Test.make_request(:get, "/endpoint").test_attr).to eq("test")
+    end
   end
 
   describe "ClassMethods#make_request" do
@@ -81,13 +87,26 @@ describe Betsy::Model do
     end
   end
 
-  describe "ClassMethods#handle_response" do
+  describe "ClassMethods#access_credentials" do
     it "does not add the access token to the header if passed nil instead of an etsy_account" do
       expect(Betsy::Test.access_credentials(nil)).to eq({x_api_key: Betsy.api_key})
     end
+
     it "adds the access token to the header if passed an etsy_account" do
       etsy_account = EtsyAccount.create!(access_token: "token")
       expect(Betsy::Test.access_credentials(etsy_account)).to eq({x_api_key: Betsy.api_key, Authorization: "Bearer token"})
+    end
+  end
+
+  describe "ClassMethods#handle_response" do
+    it "returns one object if count is present in response" do
+      expect(Betsy::Test.handle_response(JSON.parse('{"test_attr": "test"}'))).to be_kind_of(Betsy::Test)
+    end
+
+    it "returns multiple objects if count is present in response" do
+      response = Betsy::Test.handle_response(JSON.parse('{ "count": 2, "results": [{ "test_attr": "test1" }, { "test_attr": "test2" }] }'))
+      expect(response).to be_an_instance_of(Array)
+      expect(response.count).to eq 2
     end
   end
 end
