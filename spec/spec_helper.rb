@@ -4,6 +4,7 @@ Coveralls.wear!
 require "active_record"
 require "webmock/rspec"
 require "betsy"
+require "mock_json"
 
 ActiveRecord::Base.establish_connection adapter: "sqlite3", database: ":memory:"
 

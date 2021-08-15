@@ -5,6 +5,7 @@ require "faraday"
 
 require_relative "betsy/version"
 require_relative "betsy/model"
+require_relative "betsy/shop"
 
 module Betsy
   class Error < StandardError; end
