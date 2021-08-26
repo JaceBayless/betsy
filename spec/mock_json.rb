@@ -148,3 +148,63 @@ MULTIPLE_SHOPS = '{
     }
   ]
 }'
+
+SELLER_TAXONOMY_NODES = '{
+  "count": 1,
+  "results": [
+    {
+      "id": 1,
+      "level": 0,
+      "name": "string",
+      "parent_id": null,
+      "children": [
+        {}
+      ],
+      "full_path_taxonomy_ids": [
+        1
+      ]
+    }
+  ]
+}'
+
+SELLER_TAXONOMY_NODE_PROPERTIES = '{
+  "count": 1,
+  "results": [
+    {
+      "property_id": 1,
+      "name": "string",
+      "display_name": "string",
+      "scales": [
+        {
+          "scale_id": 1,
+          "display_name": "string",
+          "description": "string"
+        }
+      ],
+      "is_required": true,
+      "supports_attributes": true,
+      "supports_variations": true,
+      "is_multivalued": true,
+      "possible_values": [
+        {
+          "value_id": 1,
+          "name": "string",
+          "scale_id": 1,
+          "equal_to": [
+            0
+          ]
+        }
+      ],
+      "selected_values": [
+        {
+          "value_id": 1,
+          "name": "string",
+          "scale_id": 1,
+          "equal_to": [
+            0
+          ]
+        }
+      ]
+    }
+  ]
+}'
