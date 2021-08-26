@@ -57,7 +57,7 @@ describe Betsy::Shop do
   describe "update_shop" do
     it "returns a shop" do
       stub_request(:put, "https://openapi.etsy.com/v3/application/shops/1")
-      .to_return(body: SINGLE_SHOP)
+        .to_return(body: SINGLE_SHOP)
       etsy_account = EtsyAccount.create!(access_token: "token", refresh_token: "refresh", expires_in: 3600, state: "state", code_verifier: "code_verifier", last_token_refresh: DateTime.now)
       shop = Betsy::Shop.update_shop("1", etsy_account: etsy_account, announcement: "Testing")
       expect(shop).to be_kind_of(Betsy::Shop)
