@@ -376,3 +376,40 @@ MULTIPLE_LISTING_PROPERTIES = '{
     }
   ]
 }'
+
+SINGLE_SHOP_LISTING_FILE = '{
+  "listing_file_id": 1,
+  "listing_id": 1,
+  "rank": 0,
+  "filename": "string",
+  "filesize": "string",
+  "size_bytes": 0,
+  "filetype": "string",
+  "create_timestamp": 946684800
+}'
+
+MULTIPLE_SHOP_LISTING_FILES = '{
+  "count": 0,
+  "results": [
+    {
+      "listing_file_id": 1,
+      "listing_id": 1,
+      "rank": 0,
+      "filename": "string",
+      "filesize": "string",
+      "size_bytes": 0,
+      "filetype": "string",
+      "create_timestamp": 946684800
+    },
+    {
+      "listing_file_id": 1,
+      "listing_id": 1,
+      "rank": 0,
+      "filename": "string",
+      "filesize": "string",
+      "size_bytes": 0,
+      "filetype": "string",
+      "create_timestamp": 946684800
+    }
+  ]
+}'

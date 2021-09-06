@@ -8,6 +8,7 @@ require_relative "betsy/model"
 require_relative "betsy/shop"
 require_relative "betsy/seller_taxonomy"
 require_relative "betsy/shop_listing"
+require_relative "betsy/shop_listing_file"
 
 module Betsy
   class Error < StandardError; end
