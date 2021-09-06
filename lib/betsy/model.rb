@@ -13,8 +13,11 @@ module Betsy
         check_token_expiration(options[:etsy_account]) if options[:etsy_account]
         headers = access_credentials(options[:etsy_account])
         options.delete(:etsy_account)
-        response = JSON.parse(Faraday.method(request_type).call("#{BASE_ETSY_API_URL}#{endpoint}", options, headers).body)
-        handle_response(response)
+        response_body = Faraday.method(request_type).call("#{BASE_ETSY_API_URL}#{endpoint}", options, headers).body
+        if response_body.present?
+          response = JSON.parse(response_body)
+          handle_response(response)
+        end
       end
 
       def check_token_expiration(etsy_account)
