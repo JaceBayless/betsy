@@ -98,7 +98,7 @@ describe Betsy::SellerTaxonomy do
       expect(listings.first.listing_id).to eq 1
     end
   end
-  
+
   describe "find_all_active_listings_by_shop" do
     it "returns an array of all active listings for the given shop" do
       stub_request(:get, "https://openapi.etsy.com/v3/application/shops/1/listings/active")
@@ -136,7 +136,7 @@ describe Betsy::SellerTaxonomy do
     # IN THE DOCS IT APPEARS THIS HAS NO RETURN AS OF 9/5/21
     it "deletes a listing property" do
       stub_request(:delete, "https://openapi.etsy.com/v3/application/shops/1/listings/1/properties/1")
-      listings = Betsy::ShopListing.delete_listing_property(1, 1, 1)
+      Betsy::ShopListing.delete_listing_property(1, 1, 1)
     end
   end
 

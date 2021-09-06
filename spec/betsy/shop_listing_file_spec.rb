@@ -5,7 +5,7 @@ describe Betsy::ShopListingFile do
     # IN THE DOCS IT APPEARS THIS HAS NO RETURN AS OF 9/5/21
     it "deletes a listing file" do
       stub_request(:delete, "https://openapi.etsy.com/v3/application/shops/1/listings/1/files/1")
-      listing_file = Betsy::ShopListingFile.delete_listing_file(1, 1, 1)
+      Betsy::ShopListingFile.delete_listing_file(1, 1, 1)
     end
 
     it "returns a listing file" do

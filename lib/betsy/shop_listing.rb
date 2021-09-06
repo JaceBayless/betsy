@@ -64,62 +64,61 @@ module Betsy
     def self.create_draft_listing(shop_id, options = {})
       make_request(:post, "/v3/application/shops/#{shop_id}/listings", options)
     end
-    
+
     def self.get_listings_by_shop(shop_id, options = {})
       make_request(:get, "/v3/application/shops/#{shop_id}/listings", options)
     end
-    
+
     def self.delete_listing(listing_id)
       make_request(:delete, "/v3/application/listings/#{listing_id}")
     end
-    
+
     def self.get_listing(listing_id, options = {})
       make_request(:get, "/v3/application/listings/#{listing_id}", options)
     end
-    
+
     def self.find_all_listings_active(options = {})
       make_request(:get, "/v3/application/listings/active", options)
     end
-    
+
     def self.find_all_active_listings_by_shop(shop_id, options = {})
       make_request(:get, "/v3/application/shops/#{shop_id}/listings/active", options)
     end
-    
+
     def self.get_listings_by_listing_ids(options = {})
       make_request(:get, "/v3/application/listings/batch", options)
     end
-    
+
     def self.get_featured_listings_by_shop(shop_id, options = {})
       make_request(:get, "/v3/application/shops/#{shop_id}/listings/featured", options)
     end
-    
+
     def self.delete_listing_property(shop_id, listing_id, property_id)
       make_request(:delete, "/v3/application/shops/#{shop_id}/listings/#{listing_id}/properties/#{property_id}")
     end
-    
+
     def self.update_listing_property(shop_id, listing_id, property_id, options = {})
       make_request(:put, "/v3/application/shops/#{shop_id}/listings/#{listing_id}/properties/#{property_id}", options)
     end
-    
+
     # STILL IN DEVELOPMENT AS OF 8/28/2021
-    def self.get_listing_property()
-      
+    def self.get_listing_property
     end
-    
+
     def self.get_listing_properties(shop_id, listing_id)
       make_request(:get, "/v3/application/shops/#{shop_id}/listings/#{listing_id}/properties")
     end
-    
+
     def self.update_listing(shop_id, listing_id, options = {})
       make_request(:put, "/v3/application/shops/#{shop_id}/listings/#{listing_id}", options)
     end
-    
+
     def self.get_listings_by_shop_receipt(shop_id, receipt_id, options = {})
       make_request(:get, "/v3/application/shops/#{shop_id}/receipts/#{receipt_id}/listings", options)
     end
-    
+
     def self.get_listings_by_shop_section_id(shop_id, options = {})
       make_request(:get, "/v3/application/shops/#{shop_id}/shop-sections/listings", options)
-    end    
+    end
   end
 end
