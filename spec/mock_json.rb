@@ -413,3 +413,70 @@ MULTIPLE_SHOP_LISTING_FILES = '{
     }
   ]
 }'
+
+SINGLE_SHOP_LISTING_IMAGE = '{
+  "listing_id": 1,
+  "listing_image_id": 1,
+  "hex_code": "string",
+  "red": 0,
+  "green": 0,
+  "blue": 0,
+  "hue": 0,
+  "saturation": 0,
+  "brightness": 0,
+  "is_black_and_white": true,
+  "creation_tsz": 0,
+  "rank": 0,
+  "url_75x75": "string",
+  "url_170x135": "string",
+  "url_570xN": "string",
+  "url_fullxfull": "string",
+  "full_height": 0,
+  "full_width": 0
+}'
+
+MULTIPLE_SHOP_LISTING_IMAGES = '{
+  "count": 2,
+  "results": [
+    {
+      "listing_id": 1,
+      "listing_image_id": 1,
+      "hex_code": "string",
+      "red": 0,
+      "green": 0,
+      "blue": 0,
+      "hue": 0,
+      "saturation": 0,
+      "brightness": 0,
+      "is_black_and_white": true,
+      "creation_tsz": 0,
+      "rank": 0,
+      "url_75x75": "string",
+      "url_170x135": "string",
+      "url_570xN": "string",
+      "url_fullxfull": "string",
+      "full_height": 0,
+      "full_width": 0
+    },
+    {
+      "listing_id": 1,
+      "listing_image_id": 1,
+      "hex_code": "string",
+      "red": 0,
+      "green": 0,
+      "blue": 0,
+      "hue": 0,
+      "saturation": 0,
+      "brightness": 0,
+      "is_black_and_white": true,
+      "creation_tsz": 0,
+      "rank": 0,
+      "url_75x75": "string",
+      "url_170x135": "string",
+      "url_570xN": "string",
+      "url_fullxfull": "string",
+      "full_height": 0,
+      "full_width": 0
+    }
+  ]
+}'
