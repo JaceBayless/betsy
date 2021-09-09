@@ -10,6 +10,7 @@ require_relative "betsy/seller_taxonomy"
 require_relative "betsy/shop_listing"
 require_relative "betsy/shop_listing_file"
 require_relative "betsy/shop_listing_image"
+require_relative "betsy/shop_listing_inventory"
 
 module Betsy
   class Error < StandardError; end

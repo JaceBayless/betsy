@@ -480,3 +480,108 @@ MULTIPLE_SHOP_LISTING_IMAGES = '{
     }
   ]
 }'
+
+LISTING_INVENTORY = '{
+  "products": [
+    {
+      "product_id": 1,
+      "sku": "string",
+      "is_deleted": true,
+      "offerings": [
+        {
+          "offering_id": 1,
+          "quantity": 0,
+          "is_enabled": true,
+          "is_deleted": true,
+          "price": {
+            "amount": 0,
+            "divisor": 0,
+            "currency_code": "string"
+          }
+        }
+      ],
+      "property_values": [
+        {
+          "property_id": 1,
+          "property_name": "string",
+          "scale_id": 1,
+          "scale_name": "string",
+          "value_ids": [
+            1
+          ],
+          "values": [
+            "string"
+          ]
+        }
+      ]
+    }
+  ],
+  "price_on_property": [
+    0
+  ],
+  "quantity_on_property": [
+    0
+  ],
+  "sku_on_property": [
+    0
+  ],
+  "listing": {
+    "listing_id": 1,
+    "user_id": 1,
+    "shop_id": 1,
+    "title": "string",
+    "description": "string",
+    "state": "0",
+    "creation_timestamp": 946684800,
+    "ending_timestamp": 946684800,
+    "original_creation_timestamp": 946684800,
+    "last_modified_timestamp": 946684800,
+    "state_timestamp": 946684800,
+    "quantity": 0,
+    "shop_section_id": 1,
+    "featured_rank": 0,
+    "url": "string",
+    "num_favorers": 0,
+    "non_taxable": true,
+    "is_customizable": true,
+    "is_personalizable": true,
+    "personalization_is_required": true,
+    "personalization_char_count_max": 0,
+    "personalization_instructions": "string",
+    "listing_type": true,
+    "tags": [
+      "string"
+    ],
+    "materials": [
+      "string"
+    ],
+    "shipping_profile_id": 1,
+    "processing_min": 0,
+    "processing_max": 0,
+    "who_made": "i_did",
+    "when_made": "made_to_order",
+    "is_supply": true,
+    "item_weight": 0,
+    "item_weight_unit": "oz",
+    "item_length": 0,
+    "item_width": 0,
+    "item_height": 0,
+    "item_dimensions_unit": "in",
+    "is_private": true,
+    "recipient": "men",
+    "occasion": "anniversary",
+    "style": [
+      "string"
+    ],
+    "file_data": "string",
+    "has_variations": true,
+    "should_auto_renew": true,
+    "language": "string",
+    "price": {
+      "amount": 0,
+      "divisor": 0,
+      "currency_code": "string"
+    },
+    "taxonomy_id": 0
+  }
+}'
