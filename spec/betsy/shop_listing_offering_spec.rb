@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe Betsy::ShopListingOffering do
   describe "get_listing_offering" do
-    it "gets the inventory for a listing" do
+    it "gets the offering for a listing" do
       stub_request(:get, "https://openapi.etsy.com/v3/application/listings/1/products/1/offerings/1")
         .to_return(body: SHOP_LISTING_OFFERING)
       listing_offering = Betsy::ShopListingOffering.get_listing_offering(1, 1, 1)
