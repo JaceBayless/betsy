@@ -585,3 +585,15 @@ LISTING_INVENTORY = '{
     "taxonomy_id": 0
   }
 }'
+
+SHOP_LISTING_OFFERING = '{
+  "offering_id": 1,
+  "quantity": 0,
+  "is_enabled": true,
+  "is_deleted": true,
+  "price": {
+    "amount": 0,
+    "divisor": 0,
+    "currency_code": "string"
+  }
+}'
