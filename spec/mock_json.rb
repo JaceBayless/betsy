@@ -630,3 +630,13 @@ SHOP_LISTING_PRODUCT = '{
     }
   ]
 }'
+
+SHOP_LISTING_TRANSLATION = '{
+  "listing_id": 1,
+  "language": "string",
+  "title": "string",
+  "description": "string",
+  "tags": [
+    "string"
+  ]
+}'
