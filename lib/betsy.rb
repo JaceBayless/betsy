@@ -12,6 +12,7 @@ require_relative "betsy/shop_listing_file"
 require_relative "betsy/shop_listing_image"
 require_relative "betsy/shop_listing_inventory"
 require_relative "betsy/shop_listing_offering"
+require_relative "betsy/shop_listing_product"
 
 module Betsy
   class Error < StandardError; end

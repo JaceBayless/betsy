@@ -597,3 +597,36 @@ SHOP_LISTING_OFFERING = '{
     "currency_code": "string"
   }
 }'
+
+SHOP_LISTING_PRODUCT = '{
+  "product_id": 1,
+  "sku": "string",
+  "is_deleted": true,
+  "offerings": [
+    {
+      "offering_id": 1,
+      "quantity": 0,
+      "is_enabled": true,
+      "is_deleted": true,
+      "price": {
+        "amount": 0,
+        "divisor": 0,
+        "currency_code": "string"
+      }
+    }
+  ],
+  "property_values": [
+    {
+      "property_id": 1,
+      "property_name": "string",
+      "scale_id": 1,
+      "scale_name": "string",
+      "value_ids": [
+        1
+      ],
+      "values": [
+        "string"
+      ]
+    }
+  ]
+}'
