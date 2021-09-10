@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe Betsy::ShopListingImage do
+describe Betsy::ShopListingInventory do
   describe "get_listing_inventory" do
     it "gets the inventory for a listing" do
       stub_request(:get, "https://openapi.etsy.com/v3/application/listings/1/inventory")

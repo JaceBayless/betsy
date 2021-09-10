@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe Betsy::SellerTaxonomy do
+describe Betsy::ShopListing do
   describe "create_draft_listing" do
     it "creates a draft listing given a shop id" do
       stub_request(:post, "https://openapi.etsy.com/v3/application/shops/1/listings")
