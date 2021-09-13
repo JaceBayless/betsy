@@ -640,3 +640,19 @@ SHOP_LISTING_TRANSLATION = '{
     "string"
   ]
 }'
+
+SHOP_LISTING_VARIATION_IMAGES = '{
+  "count": 1,
+  "results": [
+    {
+      "property_id": 1,
+      "value_id": 1,
+      "image_id": 1
+    },
+    {
+      "property_id": 1,
+      "value_id": 1,
+      "image_id": 1
+    }
+  ]
+}'
