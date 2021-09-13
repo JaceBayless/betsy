@@ -686,3 +686,86 @@ LEDGER_ENTRIES = '{
     }
   ]
 }'
+
+PAYMENTS = '{
+  "count": 1,
+  "results": [
+    {
+      "payment_id": 1,
+      "buyer_user_id": 1,
+      "shop_id": 1,
+      "receipt_id": 1,
+      "amount_gross": {
+        "amount": 0,
+        "divisor": 0,
+        "currency_code": "string"
+      },
+      "amount_fees": {
+        "amount": 0,
+        "divisor": 0,
+        "currency_code": "string"
+      },
+      "amount_net": {
+        "amount": 0,
+        "divisor": 0,
+        "currency_code": "string"
+      },
+      "posted_gross": {
+        "amount": 0,
+        "divisor": 0,
+        "currency_code": "string"
+      },
+      "posted_fees": {
+        "amount": 0,
+        "divisor": 0,
+        "currency_code": "string"
+      },
+      "posted_net": {
+        "amount": 0,
+        "divisor": 0,
+        "currency_code": "string"
+      },
+      "adjusted_gross": {
+        "amount": 0,
+        "divisor": 0,
+        "currency_code": "string"
+      },
+      "adjusted_fees": {
+        "amount": 0,
+        "divisor": 0,
+        "currency_code": "string"
+      },
+      "adjusted_net": {
+        "amount": 0,
+        "divisor": 0,
+        "currency_code": "string"
+      },
+      "currency": "string",
+      "shop_currency": "string",
+      "buyer_currency": "string",
+      "shipping_user_id": 1,
+      "shipping_address_id": 1,
+      "billing_address_id": 1,
+      "status": "string",
+      "shipped_timestamp": 946684800,
+      "create_timestamp": 946684800,
+      "update_timestamp": 946684800,
+      "payment_adjustments": [
+        {
+          "payment_adjustment_id": 1,
+          "payment_id": 1,
+          "status": "string",
+          "is_success": true,
+          "user_id": 1,
+          "reason_code": "string",
+          "total_adjustment_amount": 0,
+          "shop_total_adjustment_amount": 0,
+          "buyer_total_adjustment_amount": 0,
+          "total_fee_adjustment_amount": 0,
+          "create_timestamp": 946684800,
+          "update_timestamp": 946684800
+        }
+      ]
+    }
+  ]
+}'
