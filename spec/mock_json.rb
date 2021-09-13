@@ -656,3 +656,8 @@ SHOP_LISTING_VARIATION_IMAGES = '{
     }
   ]
 }'
+
+
+PING = '{
+  "application_id": 1
+}'
