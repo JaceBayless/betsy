@@ -642,7 +642,7 @@ SHOP_LISTING_TRANSLATION = '{
 }'
 
 SHOP_LISTING_VARIATION_IMAGES = '{
-  "count": 1,
+  "count": 2,
   "results": [
     {
       "property_id": 1,
@@ -657,7 +657,32 @@ SHOP_LISTING_VARIATION_IMAGES = '{
   ]
 }'
 
-
 PING = '{
   "application_id": 1
+}'
+
+LEDGER_ENTRIES = '{
+  "count": 2,
+  "results": [
+    {
+      "entry_id": 1,
+      "ledger_id": 1,
+      "sequence_number": 0,
+      "amount": 0,
+      "currency": "string",
+      "description": "string",
+      "balance": 0,
+      "create_date": 0
+    },
+    {
+      "entry_id": 1,
+      "ledger_id": 1,
+      "sequence_number": 0,
+      "amount": 0,
+      "currency": "string",
+      "description": "string",
+      "balance": 0,
+      "create_date": 0
+    }
+  ]
 }'
