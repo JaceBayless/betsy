@@ -769,3 +769,346 @@ PAYMENTS = '{
     }
   ]
 }'
+
+SINGLE_SHOP_RECEIPT = '{
+  "receipt_id": 1,
+  "receipt_type": 0,
+  "seller_user_id": 1,
+  "seller_email": "user@example.com",
+  "buyer_user_id": 1,
+  "buyer_email": "user@example.com",
+  "name": "string",
+  "first_line": "string",
+  "second_line": "string",
+  "city": "string",
+  "state": "string",
+  "zip": "string",
+  "formatted_address": "string",
+  "country_iso": "string",
+  "payment_method": "string",
+  "payment_email": "string",
+  "message_from_seller": "string",
+  "message_from_buyer": "string",
+  "message_from_payment": "string",
+  "is_paid": true,
+  "is_shipped": true,
+  "create_timestamp": 946684800,
+  "update_timestamp": 946684800,
+  "gift_message": "string",
+  "grandtotal": {
+    "amount": 0,
+    "divisor": 0,
+    "currency_code": "string"
+  },
+  "subtotal": {
+    "amount": 0,
+    "divisor": 0,
+    "currency_code": "string"
+  },
+  "total_price": {
+    "amount": 0,
+    "divisor": 0,
+    "currency_code": "string"
+  },
+  "total_shipping_cost": {
+    "amount": 0,
+    "divisor": 0,
+    "currency_code": "string"
+  },
+  "total_tax_cost": {
+    "amount": 0,
+    "divisor": 0,
+    "currency_code": "string"
+  },
+  "total_vat_cost": {
+    "amount": 0,
+    "divisor": 0,
+    "currency_code": "string"
+  },
+  "discount_amt": {
+    "amount": 0,
+    "divisor": 0,
+    "currency_code": "string"
+  },
+  "gift_wrap_price": {
+    "amount": 0,
+    "divisor": 0,
+    "currency_code": "string"
+  },
+  "shipments": [
+    {
+      "receipt_shipping_id": 1,
+      "shipment_notification_timestamp": 946684800,
+      "carrier_name": "string",
+      "tracking_code": "string"
+    }
+  ],
+  "transactions": [
+    {
+      "transaction_id": 1,
+      "title": "string",
+      "description": "string",
+      "seller_user_id": 1,
+      "buyer_user_id": 1,
+      "create_timestamp": 946684800,
+      "paid_timestamp": 946684800,
+      "shipped_timestamp": 946684800,
+      "quantity": 0,
+      "listing_image_id": 1,
+      "receipt_id": 1,
+      "is_digital": true,
+      "file_data": "string",
+      "listing_id": 1,
+      "transaction_type": "string",
+      "product_id": 1,
+      "price": {
+        "amount": 0,
+        "divisor": 0,
+        "currency_code": "string"
+      },
+      "shipping_cost": {
+        "amount": 0,
+        "divisor": 0,
+        "currency_code": "string"
+      },
+      "variations": [
+        {
+          "property_id": 0,
+          "value_id": 0,
+          "formatted_name": "string",
+          "formatted_value": "string"
+        }
+      ]
+    }
+  ]
+}'
+
+MULTIPLE_SHOP_RECEIPTS = '{
+  "count": 2,
+  "results": [
+    {
+      "receipt_id": 1,
+      "receipt_type": 0,
+      "seller_user_id": 1,
+      "seller_email": "user@example.com",
+      "buyer_user_id": 1,
+      "buyer_email": "user@example.com",
+      "name": "string",
+      "first_line": "string",
+      "second_line": "string",
+      "city": "string",
+      "state": "string",
+      "zip": "string",
+      "formatted_address": "string",
+      "country_iso": "string",
+      "payment_method": "string",
+      "payment_email": "string",
+      "message_from_seller": "string",
+      "message_from_buyer": "string",
+      "message_from_payment": "string",
+      "is_paid": true,
+      "is_shipped": true,
+      "create_timestamp": 946684800,
+      "update_timestamp": 946684800,
+      "gift_message": "string",
+      "grandtotal": {
+        "amount": 0,
+        "divisor": 0,
+        "currency_code": "string"
+      },
+      "subtotal": {
+        "amount": 0,
+        "divisor": 0,
+        "currency_code": "string"
+      },
+      "total_price": {
+        "amount": 0,
+        "divisor": 0,
+        "currency_code": "string"
+      },
+      "total_shipping_cost": {
+        "amount": 0,
+        "divisor": 0,
+        "currency_code": "string"
+      },
+      "total_tax_cost": {
+        "amount": 0,
+        "divisor": 0,
+        "currency_code": "string"
+      },
+      "total_vat_cost": {
+        "amount": 0,
+        "divisor": 0,
+        "currency_code": "string"
+      },
+      "discount_amt": {
+        "amount": 0,
+        "divisor": 0,
+        "currency_code": "string"
+      },
+      "gift_wrap_price": {
+        "amount": 0,
+        "divisor": 0,
+        "currency_code": "string"
+      },
+      "shipments": [
+        {
+          "receipt_shipping_id": 1,
+          "shipment_notification_timestamp": 946684800,
+          "carrier_name": "string",
+          "tracking_code": "string"
+        }
+      ],
+      "transactions": [
+        {
+          "transaction_id": 1,
+          "title": "string",
+          "description": "string",
+          "seller_user_id": 1,
+          "buyer_user_id": 1,
+          "create_timestamp": 946684800,
+          "paid_timestamp": 946684800,
+          "shipped_timestamp": 946684800,
+          "quantity": 0,
+          "listing_image_id": 1,
+          "receipt_id": 1,
+          "is_digital": true,
+          "file_data": "string",
+          "listing_id": 1,
+          "transaction_type": "string",
+          "product_id": 1,
+          "price": {
+            "amount": 0,
+            "divisor": 0,
+            "currency_code": "string"
+          },
+          "shipping_cost": {
+            "amount": 0,
+            "divisor": 0,
+            "currency_code": "string"
+          },
+          "variations": [
+            {
+              "property_id": 0,
+              "value_id": 0,
+              "formatted_name": "string",
+              "formatted_value": "string"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "receipt_id": 1,
+      "receipt_type": 0,
+      "seller_user_id": 1,
+      "seller_email": "user@example.com",
+      "buyer_user_id": 1,
+      "buyer_email": "user@example.com",
+      "name": "string",
+      "first_line": "string",
+      "second_line": "string",
+      "city": "string",
+      "state": "string",
+      "zip": "string",
+      "formatted_address": "string",
+      "country_iso": "string",
+      "payment_method": "string",
+      "payment_email": "string",
+      "message_from_seller": "string",
+      "message_from_buyer": "string",
+      "message_from_payment": "string",
+      "is_paid": true,
+      "is_shipped": true,
+      "create_timestamp": 946684800,
+      "update_timestamp": 946684800,
+      "gift_message": "string",
+      "grandtotal": {
+        "amount": 0,
+        "divisor": 0,
+        "currency_code": "string"
+      },
+      "subtotal": {
+        "amount": 0,
+        "divisor": 0,
+        "currency_code": "string"
+      },
+      "total_price": {
+        "amount": 0,
+        "divisor": 0,
+        "currency_code": "string"
+      },
+      "total_shipping_cost": {
+        "amount": 0,
+        "divisor": 0,
+        "currency_code": "string"
+      },
+      "total_tax_cost": {
+        "amount": 0,
+        "divisor": 0,
+        "currency_code": "string"
+      },
+      "total_vat_cost": {
+        "amount": 0,
+        "divisor": 0,
+        "currency_code": "string"
+      },
+      "discount_amt": {
+        "amount": 0,
+        "divisor": 0,
+        "currency_code": "string"
+      },
+      "gift_wrap_price": {
+        "amount": 0,
+        "divisor": 0,
+        "currency_code": "string"
+      },
+      "shipments": [
+        {
+          "receipt_shipping_id": 1,
+          "shipment_notification_timestamp": 946684800,
+          "carrier_name": "string",
+          "tracking_code": "string"
+        }
+      ],
+      "transactions": [
+        {
+          "transaction_id": 1,
+          "title": "string",
+          "description": "string",
+          "seller_user_id": 1,
+          "buyer_user_id": 1,
+          "create_timestamp": 946684800,
+          "paid_timestamp": 946684800,
+          "shipped_timestamp": 946684800,
+          "quantity": 0,
+          "listing_image_id": 1,
+          "receipt_id": 1,
+          "is_digital": true,
+          "file_data": "string",
+          "listing_id": 1,
+          "transaction_type": "string",
+          "product_id": 1,
+          "price": {
+            "amount": 0,
+            "divisor": 0,
+            "currency_code": "string"
+          },
+          "shipping_cost": {
+            "amount": 0,
+            "divisor": 0,
+            "currency_code": "string"
+          },
+          "variations": [
+            {
+              "property_id": 0,
+              "value_id": 0,
+              "formatted_name": "string",
+              "formatted_value": "string"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}'
