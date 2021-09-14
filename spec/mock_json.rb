@@ -1112,3 +1112,118 @@ MULTIPLE_SHOP_RECEIPTS = '{
     }
   ]
 }'
+
+SINGLE_SHOP_RECEIPT_TRANSACTION = '{
+  "transaction_id": 1,
+  "title": "string",
+  "description": "string",
+  "seller_user_id": 1,
+  "buyer_user_id": 1,
+  "create_timestamp": 946684800,
+  "paid_timestamp": 946684800,
+  "shipped_timestamp": 946684800,
+  "quantity": 0,
+  "listing_image_id": 1,
+  "receipt_id": 1,
+  "is_digital": true,
+  "file_data": "string",
+  "listing_id": 1,
+  "transaction_type": "string",
+  "product_id": 1,
+  "price": {
+    "amount": 0,
+    "divisor": 0,
+    "currency_code": "string"
+  },
+  "shipping_cost": {
+    "amount": 0,
+    "divisor": 0,
+    "currency_code": "string"
+  },
+  "variations": [
+    {
+      "property_id": 0,
+      "value_id": 0,
+      "formatted_name": "string",
+      "formatted_value": "string"
+    }
+  ]
+}'
+
+MULTIPLE_SHOP_RECEIPT_TRANSACTIONS = '{
+  "count": 2,
+  "results": [
+    {
+      "transaction_id": 1,
+      "title": "string",
+      "description": "string",
+      "seller_user_id": 1,
+      "buyer_user_id": 1,
+      "create_timestamp": 946684800,
+      "paid_timestamp": 946684800,
+      "shipped_timestamp": 946684800,
+      "quantity": 0,
+      "listing_image_id": 1,
+      "receipt_id": 1,
+      "is_digital": true,
+      "file_data": "string",
+      "listing_id": 1,
+      "transaction_type": "string",
+      "product_id": 1,
+      "price": {
+        "amount": 0,
+        "divisor": 0,
+        "currency_code": "string"
+      },
+      "shipping_cost": {
+        "amount": 0,
+        "divisor": 0,
+        "currency_code": "string"
+      },
+      "variations": [
+        {
+          "property_id": 0,
+          "value_id": 0,
+          "formatted_name": "string",
+          "formatted_value": "string"
+        }
+      ]
+    },
+    {
+      "transaction_id": 1,
+      "title": "string",
+      "description": "string",
+      "seller_user_id": 1,
+      "buyer_user_id": 1,
+      "create_timestamp": 946684800,
+      "paid_timestamp": 946684800,
+      "shipped_timestamp": 946684800,
+      "quantity": 0,
+      "listing_image_id": 1,
+      "receipt_id": 1,
+      "is_digital": true,
+      "file_data": "string",
+      "listing_id": 1,
+      "transaction_type": "string",
+      "product_id": 1,
+      "price": {
+        "amount": 0,
+        "divisor": 0,
+        "currency_code": "string"
+      },
+      "shipping_cost": {
+        "amount": 0,
+        "divisor": 0,
+        "currency_code": "string"
+      },
+      "variations": [
+        {
+          "property_id": 0,
+          "value_id": 0,
+          "formatted_name": "string",
+          "formatted_value": "string"
+        }
+      ]
+    }
+  ]
+}'
