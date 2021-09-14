@@ -30,7 +30,7 @@ describe Betsy::ShopReceiptTransaction do
       expect(transaction.variations).to be_an_instance_of Array
     end
   end
-  
+
   describe "get_shop_receipt_transactions_by_receipt" do
     it "gets receipt transactions by a receipt" do
       stub_request(:get, "https://openapi.etsy.com/v3/application/shops/1/receipts/1/transactions")

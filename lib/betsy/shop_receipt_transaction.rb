@@ -27,11 +27,11 @@ module Betsy
     def self.get_shop_receipt_transactions_by_listing(shop_id, listing_id, options = {})
       make_request(:get, "/v3/application/shops/#{shop_id}/listings/#{listing_id}/transactions", options)
     end
-    
+
     def self.get_shop_receipt_transactions_by_receipt(shop_id, receipt_id, options = {})
       make_request(:get, "/v3/application/shops/#{shop_id}/receipts/#{receipt_id}/transactions", options)
     end
-    
+
     def self.get_shop_receipt_transaction(shop_id, transaction_id, options = {})
       make_request(:get, "/v3/application/shops/#{shop_id}/transactions/#{transaction_id}", options)
     end
