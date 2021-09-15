@@ -1227,3 +1227,33 @@ MULTIPLE_SHOP_RECEIPT_TRANSACTIONS = '{
     }
   ]
 }'
+
+REVIEWS = '{
+  "count": 2,
+  "results": [
+    {
+      "shop_id": 1,
+      "listing_id": 1,
+      "transaction_id": 1,
+      "buyer_user_id": 1,
+      "rating": 0,
+      "review": "string",
+      "language": "string",
+      "image_url_fullxfull": "string",
+      "create_timestamp": 946684800,
+      "update_timestamp": 946684800
+    },
+    {
+      "shop_id": 1,
+      "listing_id": 1,
+      "transaction_id": 1,
+      "buyer_user_id": 1,
+      "rating": 0,
+      "review": "string",
+      "language": "string",
+      "image_url_fullxfull": "string",
+      "create_timestamp": 946684800,
+      "update_timestamp": 946684800
+    }
+  ]
+}'
