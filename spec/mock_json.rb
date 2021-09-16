@@ -1257,3 +1257,368 @@ REVIEWS = '{
     }
   ]
 }'
+
+SHIPPING_CARRIERS = '{
+  "count": 0,
+  "results": [
+    {
+      "shipping_carrier_id": 1,
+      "name": "string",
+      "domestic_classes": [
+        {
+          "mail_class_key": "string",
+          "name": "string"
+        }
+      ],
+      "international_classes": [
+        {
+          "mail_class_key": "string",
+          "name": "string"
+        }
+      ]
+    },
+    {
+      "shipping_carrier_id": 1,
+      "name": "string",
+      "domestic_classes": [
+        {
+          "mail_class_key": "string",
+          "name": "string"
+        }
+      ],
+      "international_classes": [
+        {
+          "mail_class_key": "string",
+          "name": "string"
+        }
+      ]
+    }
+  ]
+}'
+
+SINGLE_SHIPPING_PROFILE = '{
+  "shipping_profile_id": 1,
+  "title": "string",
+  "user_id": 1,
+  "min_processing_days": 0,
+  "max_processing_days": 0,
+  "processing_days_display_label": "string",
+  "origin_country_iso": "string",
+  "is_deleted": true,
+  "shipping_profile_destinations": [
+    {
+      "shipping_profile_destination_id": 1,
+      "shipping_profile_id": 1,
+      "origin_country_iso": "string",
+      "destination_country_iso": "string",
+      "destination_region": "eu",
+      "primary_cost": {
+        "amount": 0,
+        "divisor": 0,
+        "currency_code": "string"
+      },
+      "secondary_cost": {
+        "amount": 0,
+        "divisor": 0,
+        "currency_code": "string"
+      },
+      "shipping_carrier_id": 0,
+      "mail_class": "string",
+      "min_delivery_days": 1,
+      "max_delivery_days": 1
+    }
+  ],
+  "shipping_profile_upgrades": [
+    {
+      "shipping_profile_id": 1,
+      "upgrade_id": 1,
+      "upgrade_name": "string",
+      "type": "0",
+      "rank": 0,
+      "language": "string",
+      "price": {
+        "amount": 0,
+        "divisor": 0,
+        "currency_code": "string"
+      },
+      "secondary_price": {
+        "amount": 0,
+        "divisor": 0,
+        "currency_code": "string"
+      },
+      "shipping_carrier_id": 0,
+      "mail_class": "string",
+      "min_delivery_days": 1,
+      "max_delivery_days": 1
+    }
+  ],
+  "origin_postal_code": "string",
+  "profile_type": "manual"
+}'
+
+MUTLIPLE_SHIPPING_PROFILES = '{
+  "count": 2,
+  "results": [
+    {
+      "shipping_profile_id": 1,
+      "title": "string",
+      "user_id": 1,
+      "min_processing_days": 0,
+      "max_processing_days": 0,
+      "processing_days_display_label": "string",
+      "origin_country_iso": "string",
+      "is_deleted": true,
+      "shipping_profile_destinations": [
+        {
+          "shipping_profile_destination_id": 1,
+          "shipping_profile_id": 1,
+          "origin_country_iso": "string",
+          "destination_country_iso": "string",
+          "destination_region": "eu",
+          "primary_cost": {
+            "amount": 0,
+            "divisor": 0,
+            "currency_code": "string"
+          },
+          "secondary_cost": {
+            "amount": 0,
+            "divisor": 0,
+            "currency_code": "string"
+          },
+          "shipping_carrier_id": 0,
+          "mail_class": "string",
+          "min_delivery_days": 1,
+          "max_delivery_days": 1
+        }
+      ],
+      "shipping_profile_upgrades": [
+        {
+          "shipping_profile_id": 1,
+          "upgrade_id": 1,
+          "upgrade_name": "string",
+          "type": "0",
+          "rank": 0,
+          "language": "string",
+          "price": {
+            "amount": 0,
+            "divisor": 0,
+            "currency_code": "string"
+          },
+          "secondary_price": {
+            "amount": 0,
+            "divisor": 0,
+            "currency_code": "string"
+          },
+          "shipping_carrier_id": 0,
+          "mail_class": "string",
+          "min_delivery_days": 1,
+          "max_delivery_days": 1
+        }
+      ],
+      "origin_postal_code": "string",
+      "profile_type": "manual"
+    },
+    {
+      "shipping_profile_id": 1,
+      "title": "string",
+      "user_id": 1,
+      "min_processing_days": 0,
+      "max_processing_days": 0,
+      "processing_days_display_label": "string",
+      "origin_country_iso": "string",
+      "is_deleted": true,
+      "shipping_profile_destinations": [
+        {
+          "shipping_profile_destination_id": 1,
+          "shipping_profile_id": 1,
+          "origin_country_iso": "string",
+          "destination_country_iso": "string",
+          "destination_region": "eu",
+          "primary_cost": {
+            "amount": 0,
+            "divisor": 0,
+            "currency_code": "string"
+          },
+          "secondary_cost": {
+            "amount": 0,
+            "divisor": 0,
+            "currency_code": "string"
+          },
+          "shipping_carrier_id": 0,
+          "mail_class": "string",
+          "min_delivery_days": 1,
+          "max_delivery_days": 1
+        }
+      ],
+      "shipping_profile_upgrades": [
+        {
+          "shipping_profile_id": 1,
+          "upgrade_id": 1,
+          "upgrade_name": "string",
+          "type": "0",
+          "rank": 0,
+          "language": "string",
+          "price": {
+            "amount": 0,
+            "divisor": 0,
+            "currency_code": "string"
+          },
+          "secondary_price": {
+            "amount": 0,
+            "divisor": 0,
+            "currency_code": "string"
+          },
+          "shipping_carrier_id": 0,
+          "mail_class": "string",
+          "min_delivery_days": 1,
+          "max_delivery_days": 1
+        }
+      ],
+      "origin_postal_code": "string",
+      "profile_type": "manual"
+    }
+  ]
+}'
+
+SINGLE_SHIPPING_PROFILE_DESTINATION = '{
+  "shipping_profile_destination_id": 1,
+  "shipping_profile_id": 1,
+  "origin_country_iso": "string",
+  "destination_country_iso": "string",
+  "destination_region": "eu",
+  "primary_cost": {
+    "amount": 0,
+    "divisor": 0,
+    "currency_code": "string"
+  },
+  "secondary_cost": {
+    "amount": 0,
+    "divisor": 0,
+    "currency_code": "string"
+  },
+  "shipping_carrier_id": 0,
+  "mail_class": "string",
+  "min_delivery_days": 1,
+  "max_delivery_days": 1
+}'
+
+MULTIPLE_SHIPPING_PROFILE_DESTINATIONS = '{
+  "count": 2,
+  "results": [
+    {
+      "shipping_profile_destination_id": 1,
+      "shipping_profile_id": 1,
+      "origin_country_iso": "string",
+      "destination_country_iso": "string",
+      "destination_region": "eu",
+      "primary_cost": {
+        "amount": 0,
+        "divisor": 0,
+        "currency_code": "string"
+      },
+      "secondary_cost": {
+        "amount": 0,
+        "divisor": 0,
+        "currency_code": "string"
+      },
+      "shipping_carrier_id": 0,
+      "mail_class": "string",
+      "min_delivery_days": 1,
+      "max_delivery_days": 1
+    },
+    {
+      "shipping_profile_destination_id": 1,
+      "shipping_profile_id": 1,
+      "origin_country_iso": "string",
+      "destination_country_iso": "string",
+      "destination_region": "eu",
+      "primary_cost": {
+        "amount": 0,
+        "divisor": 0,
+        "currency_code": "string"
+      },
+      "secondary_cost": {
+        "amount": 0,
+        "divisor": 0,
+        "currency_code": "string"
+      },
+      "shipping_carrier_id": 0,
+      "mail_class": "string",
+      "min_delivery_days": 1,
+      "max_delivery_days": 1
+    }
+  ]
+}'
+
+SINGLE_SHIPPING_PROFILE_UPGRADE = '{
+  "shipping_profile_id": 1,
+  "upgrade_id": 1,
+  "upgrade_name": "string",
+  "type": "0",
+  "rank": 0,
+  "language": "string",
+  "price": {
+    "amount": 0,
+    "divisor": 0,
+    "currency_code": "string"
+  },
+  "secondary_price": {
+    "amount": 0,
+    "divisor": 0,
+    "currency_code": "string"
+  },
+  "shipping_carrier_id": 0,
+  "mail_class": "string",
+  "min_delivery_days": 1,
+  "max_delivery_days": 1
+}'
+
+MULTIPLE_SHIPPING_PROFILE_UPGRADES = '{
+  "count": 2,
+  "results": [
+    {
+      "shipping_profile_id": 1,
+      "upgrade_id": 1,
+      "upgrade_name": "string",
+      "type": "0",
+      "rank": 0,
+      "language": "string",
+      "price": {
+        "amount": 0,
+        "divisor": 0,
+        "currency_code": "string"
+      },
+      "secondary_price": {
+        "amount": 0,
+        "divisor": 0,
+        "currency_code": "string"
+      },
+      "shipping_carrier_id": 0,
+      "mail_class": "string",
+      "min_delivery_days": 1,
+      "max_delivery_days": 1
+    },
+    {
+      "shipping_profile_id": 1,
+      "upgrade_id": 1,
+      "upgrade_name": "string",
+      "type": "0",
+      "rank": 0,
+      "language": "string",
+      "price": {
+        "amount": 0,
+        "divisor": 0,
+        "currency_code": "string"
+      },
+      "secondary_price": {
+        "amount": 0,
+        "divisor": 0,
+        "currency_code": "string"
+      },
+      "shipping_carrier_id": 0,
+      "mail_class": "string",
+      "min_delivery_days": 1,
+      "max_delivery_days": 1
+    }
+  ]
+}'
