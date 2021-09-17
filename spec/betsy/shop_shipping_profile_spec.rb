@@ -18,7 +18,7 @@ describe Betsy::ShopShippingProfile do
 
   describe "create_shop_shipping_profile" do
     it "creates a shop shipping profile" do
-      stub_request(:post, "https://openapi.etsy.com/v3/application/shops/1/shipping-profiles") 
+      stub_request(:post, "https://openapi.etsy.com/v3/application/shops/1/shipping-profiles")
         .to_return(body: SINGLE_SHIPPING_PROFILE)
       shipping_profile = Betsy::ShopShippingProfile.create_shop_shipping_profile(1)
       expect(shipping_profile).to be_kind_of Betsy::ShopShippingProfile
