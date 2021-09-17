@@ -1684,3 +1684,35 @@ USER = '{
   "transaction_buy_count": 0,
   "transaction_sold_count": 0
 }'
+
+USER_ADDRESSES = '{
+  "count": 2,
+  "results": [
+    {
+      "user_address_id": 1,
+      "user_id": 1,
+      "name": "string",
+      "first_line": "string",
+      "second_line": "string",
+      "city": "string",
+      "state": "string",
+      "zip": "string",
+      "iso_country_code": "string",
+      "country_name": "string",
+      "is_default_shipping_address": true
+    },
+    {
+      "user_address_id": 1,
+      "user_id": 1,
+      "name": "string",
+      "first_line": "string",
+      "second_line": "string",
+      "city": "string",
+      "state": "string",
+      "zip": "string",
+      "iso_country_code": "string",
+      "country_name": "string",
+      "is_default_shipping_address": true
+    }
+  ]
+}'
