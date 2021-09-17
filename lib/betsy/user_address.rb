@@ -16,7 +16,7 @@ module Betsy
     attribute :country_name
     attribute :is_default_shipping_address
 
-    # STILL IN DEVELOPMENT AS OF 9/16/2021  
+    # STILL IN DEVELOPMENT AS OF 9/16/2021
     def self.get_user_address
     end
 
