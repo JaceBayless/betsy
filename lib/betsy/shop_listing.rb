@@ -69,8 +69,8 @@ module Betsy
       make_request(:get, "/v3/application/shops/#{shop_id}/listings", options)
     end
 
-    def self.delete_listing(listing_id)
-      make_request(:delete, "/v3/application/listings/#{listing_id}")
+    def self.delete_listing(listing_id, options = {})
+      make_request(:delete, "/v3/application/listings/#{listing_id}", options)
     end
 
     def self.get_listing(listing_id, options = {})
@@ -93,8 +93,8 @@ module Betsy
       make_request(:get, "/v3/application/shops/#{shop_id}/listings/featured", options)
     end
 
-    def self.delete_listing_property(shop_id, listing_id, property_id)
-      make_request(:delete, "/v3/application/shops/#{shop_id}/listings/#{listing_id}/properties/#{property_id}")
+    def self.delete_listing_property(shop_id, listing_id, property_id, options = {})
+      make_request(:delete, "/v3/application/shops/#{shop_id}/listings/#{listing_id}/properties/#{property_id}", options)
     end
 
     def self.update_listing_property(shop_id, listing_id, property_id, options = {})

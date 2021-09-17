@@ -23,8 +23,8 @@ module Betsy
     attribute :full_height
     attribute :full_width
 
-    def self.delete_listing_image(shop_id, listing_id, listing_image_id)
-      make_request(:delete, "/v3/application/shops/#{shop_id}/listings/#{listing_id}/images/#{listing_image_id}")
+    def self.delete_listing_image(shop_id, listing_id, listing_image_id, options = {})
+      make_request(:delete, "/v3/application/shops/#{shop_id}/listings/#{listing_id}/images/#{listing_image_id}", options)
     end
 
     def self.get_listing_image(shop_id, listing_id, listing_image_id)

@@ -35,7 +35,7 @@ describe Betsy::Model do
 
     it "properly returns the value when the method is called" do
       stub_request(:any, "https://openapi.etsy.com/endpoint")
-        .to_return(status: 200, body: '{"test_attr": "test"}', status: 200)
+        .to_return(status: 200, body: '{"test_attr": "test"}')
       expect(Betsy::Test.make_request(:get, "/endpoint").test_attr).to eq("test")
     end
   end
@@ -43,7 +43,7 @@ describe Betsy::Model do
   describe "ClassMethods#make_request" do
     it "can make make get, post, put, patch, and delete calls" do
       stub_request(:any, "https://openapi.etsy.com/endpoint")
-        .to_return(status: 200, body: '{"test_attr": "test"}', status: 200)
+        .to_return(status: 200, body: '{"test_attr": "test"}')
       expect(Betsy::Test.make_request(:get, "/endpoint")).to be_kind_of(Betsy::Test)
       expect(Betsy::Test.make_request(:post, "/endpoint")).to be_kind_of(Betsy::Test)
       expect(Betsy::Test.make_request(:put, "/endpoint")).to be_kind_of(Betsy::Test)
@@ -53,7 +53,7 @@ describe Betsy::Model do
 
     it "checks token expiration and deletes etsy_account from options" do
       stub_request(:any, "https://openapi.etsy.com/endpoint")
-        .to_return(status: 200, body: '{"test_attr": "test"}', status: 200)
+        .to_return(status: 200, body: '{"test_attr": "test"}')
       stub_request(:post, "https://api.etsy.com/v3/public/oauth/token")
         .to_return(status: 200, body: '{"access_token": "refreshed_token", "expires_in": 3600, "refresh_token": "refreshed_refresh_token"}')
       etsy_account = EtsyAccount.create!(access_token: "token", refresh_token: "refresh", expires_in: 0, state: "state", code_verifier: "code_verifier", last_token_refresh: DateTime.now - 60)

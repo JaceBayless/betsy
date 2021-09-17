@@ -10,8 +10,8 @@ module Betsy
     attribute :offerings
     attribute :property_values
 
-    def self.get_listing_product(listing_id, product_id)
-      make_request(:get, "/v3/application/listings/#{listing_id}/inventory/products/#{product_id}")
+    def self.get_listing_product(listing_id, product_id, options = {})
+      make_request(:get, "/v3/application/listings/#{listing_id}/inventory/products/#{product_id}", options)
     end
   end
 end
