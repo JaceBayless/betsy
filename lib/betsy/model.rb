@@ -43,17 +43,21 @@ module Betsy
         if response.status == 200
           return nil if response.body.empty?
           response = JSON.parse(response.body)
-          if response["count"].nil?
-            objects = new(response)
-          else
-            objects = []
-            response["results"].each do |data|
-              objects.append(new(data))
-            end
-          end
-          objects
+          build_objects(response)
         else
           Betsy::Error.new(JSON.parse(response.body).merge!("status" => response.status))
+        end
+      end
+
+      def build_objects(response)
+        if response["count"].nil?
+          objects = new(response)
+        else
+          objects = []
+          response["results"].each do |data|
+            objects.append(new(data))
+          end
+          objects
         end
       end
     end

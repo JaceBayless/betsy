@@ -121,4 +121,24 @@ describe Betsy::Model do
       expect(response.error).to eq "string"
     end
   end
+
+  describe "ClassMethods#build_objects" do
+    it "builds multiple objects when there is there are multiple results" do
+      stub_request(:get, "https://www.testing.com")
+        .to_return(status: 200, body: '{ "count": 2, "results": [{ "test_attr": "test1" }, { "test_attr": "test2" }] }')
+      body = JSON.parse(Faraday.get("https://www.testing.com").body)
+      response = Betsy::Test.build_objects(body)
+      expect(response).to be_an_instance_of Array
+      expect(response.first).to be_kind_of Betsy::Test
+    end
+
+    it "returns a single object when there is only one result" do
+      stub_request(:get, "https://www.testing.com")
+        .to_return(status: 200, body: '{ "test_attr": "test1" }')
+      body = JSON.parse(Faraday.get("https://www.testing.com").body)
+      response = Betsy::Test.build_objects(body)
+      expect(response).to be_kind_of Betsy::Test
+      expect(response.test_attr).to eq "test1"
+    end
+  end
 end
