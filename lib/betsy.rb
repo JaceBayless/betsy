@@ -23,6 +23,7 @@ require_relative "betsy/shop_receipt_transaction"
 require_relative "betsy/review"
 require_relative "betsy/shop_shipping_profile"
 require_relative "betsy/shop_production_partner"
+require_relative "betsy/shop_section"
 
 module Betsy
   class Error < StandardError; end

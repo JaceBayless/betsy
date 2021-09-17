@@ -1638,3 +1638,31 @@ SHOP_PRODUCTION_PARTNERS = '{
     }
   ]
 }'
+
+SINGLE_SHOP_SECTION = '{
+  "shop_section_id": 1,
+  "title": "string",
+  "rank": 0,
+  "user_id": 1,
+  "active_listing_count": 0
+}'
+
+MULTIPLE_SHOP_SECTIONS = '{
+  "count": 2,
+  "results": [
+    {
+      "shop_section_id": 1,
+      "title": "string",
+      "rank": 0,
+      "user_id": 1,
+      "active_listing_count": 0
+    },
+    {
+      "shop_section_id": 1,
+      "title": "string",
+      "rank": 0,
+      "user_id": 1,
+      "active_listing_count": 0
+    }
+  ]
+}'
