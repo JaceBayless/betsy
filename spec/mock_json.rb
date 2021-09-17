@@ -1622,3 +1622,19 @@ MULTIPLE_SHIPPING_PROFILE_UPGRADES = '{
     }
   ]
 }'
+
+SHOP_PRODUCTION_PARTNERS = '{
+  "count": 2,
+  "results": [
+    {
+      "production_partner_id": 1,
+      "partner_name": "string",
+      "location": "string"
+    },
+    {
+      "production_partner_id": 1,
+      "partner_name": "string",
+      "location": "string"
+    }
+  ]
+}'
