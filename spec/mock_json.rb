@@ -1666,3 +1666,21 @@ MULTIPLE_SHOP_SECTIONS = '{
     }
   ]
 }'
+
+USER = '{
+  "user_id": 1,
+  "login_name": "string",
+  "primary_email": "user@example.com",
+  "first_name": "string",
+  "last_name": "string",
+  "create_timestamp": 946684800,
+  "referred_by_user_id": 1,
+  "use_new_inventory_endpoints": true,
+  "is_seller": true,
+  "bio": "string",
+  "gender": "string",
+  "birth_month": "string",
+  "birth_day": "string",
+  "transaction_buy_count": 0,
+  "transaction_sold_count": 0
+}'
