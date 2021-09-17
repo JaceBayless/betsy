@@ -4,7 +4,7 @@ describe Betsy::SellerTaxonomy do
   describe "get_seller_taxonomy_nodes" do
     it "returns an array of seller taxonomy objects with all data when a request is made" do
       stub_request(:get, "https://openapi.etsy.com/v3/application/seller-taxonomy/nodes")
-        .to_return(body: SELLER_TAXONOMY_NODES)
+        .to_return(status: 200, body: SELLER_TAXONOMY_NODES)
       seller_taxonomy_nodes = Betsy::SellerTaxonomy.get_seller_taxonomy_nodes
       first = seller_taxonomy_nodes.first
       expect(seller_taxonomy_nodes).to be_an_instance_of Array
@@ -22,7 +22,7 @@ describe Betsy::SellerTaxonomy do
   describe "get_properties_by_taxonomy_id" do
     it "returns an array of seller taxonomy objects with all data when a request is made" do
       stub_request(:get, "https://openapi.etsy.com/v3/application/seller-taxonomy/nodes/1/properties")
-        .to_return(body: SELLER_TAXONOMY_NODE_PROPERTIES)
+        .to_return(status: 200, body: SELLER_TAXONOMY_NODE_PROPERTIES)
       node_properties = Betsy::SellerTaxonomy.get_properties_by_taxonomy_id(1)
       first = node_properties.first
       expect(node_properties).to be_an_instance_of Array

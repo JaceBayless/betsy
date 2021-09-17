@@ -51,7 +51,7 @@ describe Betsy do
           "refresh_token": "12345678.JNGIJtvLmwfDMhlYoOJl8aLR1BWottyHC6yhNcET-eC7RogSR5e1GTIXGrgrelWZalvh3YvvyLfKYYqvymd-u37Sjtx"
       }'
       stub_request(:post, "https://api.etsy.com/v3/public/oauth/token")
-        .to_return(body: valid_response)
+        .to_return(status: 200, body: valid_response)
 
       EtsyAccount.create!(state: "validstate", code_verifier: "zangerbob")
       params = ActionController::Parameters.new(state: "validstate", code: "thomasthetrainengineisfast")

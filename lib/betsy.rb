@@ -26,9 +26,10 @@ require_relative "betsy/shop_production_partner"
 require_relative "betsy/shop_section"
 require_relative "betsy/user"
 require_relative "betsy/user_address"
+require_relative "betsy/error"
 
 module Betsy
-  class Error < StandardError; end
+  # class Error < StandardError; end
 
   mattr_accessor :api_key
   mattr_accessor :redirect_uri_base

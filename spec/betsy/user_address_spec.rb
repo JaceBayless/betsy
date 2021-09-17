@@ -4,7 +4,7 @@ describe Betsy::UserAddress do
   describe "get_user_addresses" do
     it "returns a list of the users address" do
       stub_request(:get, "https://openapi.etsy.com/v3/application/user/addresses")
-        .to_return(body: USER_ADDRESSES)
+        .to_return(status: 200, body: USER_ADDRESSES)
       addresses = Betsy::UserAddress.get_user_addresses
       address = addresses.first
       expect(addresses).to be_an_instance_of Array

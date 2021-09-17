@@ -4,7 +4,7 @@ describe Betsy::Review do
   describe "get_reviews_by_shop" do
     it "gets the reviews for a shop" do
       stub_request(:get, "https://openapi.etsy.com/v3/application/shops/1/reviews")
-        .to_return(body: REVIEWS)
+        .to_return(status: 200, body: REVIEWS)
       reviews = Betsy::Review.get_reviews_by_shop(1)
       review = reviews.first
       expect(reviews).to be_an_instance_of Array

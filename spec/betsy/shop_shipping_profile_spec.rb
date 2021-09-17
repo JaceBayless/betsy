@@ -4,7 +4,7 @@ describe Betsy::ShopShippingProfile do
   describe "get_shipping_carriers" do
     it "returns a list of shipping carriers" do
       stub_request(:get, "https://openapi.etsy.com/v3/application/shipping-carriers")
-        .to_return(body: SHIPPING_CARRIERS)
+        .to_return(status: 200, body: SHIPPING_CARRIERS)
       shipping_carriers = Betsy::ShopShippingProfile.get_shipping_carriers
       shipping_carrier = shipping_carriers.first
       expect(shipping_carriers).to be_an_instance_of Array
@@ -19,7 +19,7 @@ describe Betsy::ShopShippingProfile do
   describe "create_shop_shipping_profile" do
     it "creates a shop shipping profile" do
       stub_request(:post, "https://openapi.etsy.com/v3/application/shops/1/shipping-profiles")
-        .to_return(body: SINGLE_SHIPPING_PROFILE)
+        .to_return(status: 200, body: SINGLE_SHIPPING_PROFILE)
       shipping_profile = Betsy::ShopShippingProfile.create_shop_shipping_profile(1)
       expect(shipping_profile).to be_kind_of Betsy::ShopShippingProfile
       expect(shipping_profile.shipping_profile_id).to eq 1
@@ -40,7 +40,7 @@ describe Betsy::ShopShippingProfile do
   describe "get_shop_shipping_profiles" do
     it "gets shipping profiles for a shop" do
       stub_request(:get, "https://openapi.etsy.com/v3/application/shops/1/shipping-profiles")
-        .to_return(body: MUTLIPLE_SHIPPING_PROFILES)
+        .to_return(status: 200, body: MUTLIPLE_SHIPPING_PROFILES)
       shipping_profiles = Betsy::ShopShippingProfile.get_shop_shipping_profiles(1)
       shipping_profile = shipping_profiles.first
       expect(shipping_profiles).to be_an_instance_of Array
@@ -60,7 +60,7 @@ describe Betsy::ShopShippingProfile do
   describe "get_shop_shipping_profile" do
     it "gets a shipping profile by id" do
       stub_request(:get, "https://openapi.etsy.com/v3/application/shops/1/shipping-profiles/1")
-        .to_return(body: SINGLE_SHIPPING_PROFILE)
+        .to_return(status: 200, body: SINGLE_SHIPPING_PROFILE)
       shipping_profile = Betsy::ShopShippingProfile.get_shop_shipping_profile(1, 1)
       expect(shipping_profile).to be_kind_of Betsy::ShopShippingProfile
       expect(shipping_profile.shipping_profile_id).to eq 1
@@ -70,7 +70,7 @@ describe Betsy::ShopShippingProfile do
   describe "update_shop_shipping_profile" do
     it "updates a shipping profile by id" do
       stub_request(:put, "https://openapi.etsy.com/v3/application/shops/1/shipping-profiles/1")
-        .to_return(body: SINGLE_SHIPPING_PROFILE)
+        .to_return(status: 200, body: SINGLE_SHIPPING_PROFILE)
       shipping_profile = Betsy::ShopShippingProfile.update_shop_shipping_profile(1, 1)
       expect(shipping_profile).to be_kind_of Betsy::ShopShippingProfile
       expect(shipping_profile.shipping_profile_id).to eq 1
@@ -80,7 +80,7 @@ describe Betsy::ShopShippingProfile do
   describe "create_shop_shipping_profile_destination" do
     it "creates a shop shipping profile destination" do
       stub_request(:post, "https://openapi.etsy.com/v3/application/shops/1/shipping-profiles/1/destinations")
-        .to_return(body: SINGLE_SHIPPING_PROFILE_DESTINATION)
+        .to_return(status: 200, body: SINGLE_SHIPPING_PROFILE_DESTINATION)
       destination = Betsy::ShopShippingProfile.create_shop_shipping_profile_destination(1, 1)
       expect(destination).to be_kind_of Betsy::ShopShippingProfile
       expect(destination.shipping_profile_destination_id).to eq 1
@@ -99,7 +99,7 @@ describe Betsy::ShopShippingProfile do
   describe "create_shop_shipping_profile_destination" do
     it "creates a shop shipping profile destination" do
       stub_request(:get, "https://openapi.etsy.com/v3/application/shops/1/shipping-profiles/1/destinations")
-        .to_return(body: MULTIPLE_SHIPPING_PROFILE_DESTINATIONS)
+        .to_return(status: 200, body: MULTIPLE_SHIPPING_PROFILE_DESTINATIONS)
       destinations = Betsy::ShopShippingProfile.get_shop_shipping_profile_destinations_by_shipping_profile(1, 1)
       destination = destinations.first
       expect(destinations).to be_an_instance_of Array
@@ -118,7 +118,7 @@ describe Betsy::ShopShippingProfile do
   describe "update_shop_shipping_profile_destination" do
     it "updates a shop shipping profile destination" do
       stub_request(:put, "https://openapi.etsy.com/v3/application/shops/1/shipping-profiles/1/destinations/1")
-        .to_return(body: SINGLE_SHIPPING_PROFILE_DESTINATION)
+        .to_return(status: 200, body: SINGLE_SHIPPING_PROFILE_DESTINATION)
       destination = Betsy::ShopShippingProfile.update_shop_shipping_profile_destination(1, 1, 1)
       expect(destination).to be_kind_of Betsy::ShopShippingProfile
       expect(destination.shipping_profile_destination_id).to eq 1
@@ -128,7 +128,7 @@ describe Betsy::ShopShippingProfile do
   describe "create_shop_shipping_profile_upgrade" do
     it "creates a shop shipping profile upgrade" do
       stub_request(:post, "https://openapi.etsy.com/v3/application/shops/1/shipping-profiles/1/upgrades")
-        .to_return(body: SINGLE_SHIPPING_PROFILE_UPGRADE)
+        .to_return(status: 200, body: SINGLE_SHIPPING_PROFILE_UPGRADE)
       upgrade = Betsy::ShopShippingProfile.create_shop_shipping_profile_upgrade(1, 1)
       expect(upgrade).to be_kind_of Betsy::ShopShippingProfile
       expect(upgrade.shipping_profile_id).to eq 1
@@ -149,7 +149,7 @@ describe Betsy::ShopShippingProfile do
   describe "get_shop_shipping_profile_upgrades" do
     it "gets all shipping profile upgrades for a shop" do
       stub_request(:get, "https://openapi.etsy.com/v3/application/shops/1/shipping-profiles/1/upgrades")
-        .to_return(body: MULTIPLE_SHIPPING_PROFILE_UPGRADES)
+        .to_return(status: 200, body: MULTIPLE_SHIPPING_PROFILE_UPGRADES)
       upgrades = Betsy::ShopShippingProfile.get_shop_shipping_profile_upgrades(1, 1)
       upgrade = upgrades.first
       expect(upgrades).to be_an_instance_of Array
@@ -168,7 +168,7 @@ describe Betsy::ShopShippingProfile do
   describe "update_shop_shipping_profile_upgrade" do
     it "updates a shipping profile upgrade" do
       stub_request(:put, "https://openapi.etsy.com/v3/application/shops/1/shipping-profiles/1/upgrades/1")
-        .to_return(body: SINGLE_SHIPPING_PROFILE_UPGRADE)
+        .to_return(status: 200, body: SINGLE_SHIPPING_PROFILE_UPGRADE)
       upgrade = Betsy::ShopShippingProfile.update_shop_shipping_profile_upgrade(1, 1, 1)
       expect(upgrade).to be_kind_of Betsy::ShopShippingProfile
       expect(upgrade.shipping_profile_id).to eq 1

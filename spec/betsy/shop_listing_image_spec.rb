@@ -12,7 +12,7 @@ describe Betsy::ShopListingImage do
   describe "get_listing_image" do
     it "returns a listing image" do
       stub_request(:get, "https://openapi.etsy.com/v3/application/shops/1/listings/1/images/1")
-        .to_return(body: SINGLE_SHOP_LISTING_IMAGE)
+        .to_return(status: 200, body: SINGLE_SHOP_LISTING_IMAGE)
       listing_image = Betsy::ShopListingImage.get_listing_image(1, 1, 1)
       expect(listing_image).to be_kind_of Betsy::ShopListingImage
       expect(listing_image.listing_id).to eq 1
@@ -39,7 +39,7 @@ describe Betsy::ShopListingImage do
   describe "get_listing_images" do
     it "returns all listing images for a listing" do
       stub_request(:get, "https://openapi.etsy.com/v3/application/shops/1/listings/1/images")
-        .to_return(body: MULTIPLE_SHOP_LISTING_IMAGES)
+        .to_return(status: 200, body: MULTIPLE_SHOP_LISTING_IMAGES)
       listing_images = Betsy::ShopListingImage.get_listing_images(1, 1)
       expect(listing_images).to be_an_instance_of Array
       expect(listing_images.count).to eq 2
@@ -51,7 +51,7 @@ describe Betsy::ShopListingImage do
   describe "upload_listing_image" do
     it "uploads a listing image" do
       stub_request(:post, "https://openapi.etsy.com/v3/application/shops/1/listings/1/images")
-        .to_return(body: SINGLE_SHOP_LISTING_IMAGE)
+        .to_return(status: 200, body: SINGLE_SHOP_LISTING_IMAGE)
       listing_image = Betsy::ShopListingImage.upload_listing_image(1, 1)
       expect(listing_image).to be_kind_of Betsy::ShopListingImage
       expect(listing_image.listing_id).to eq 1

@@ -4,7 +4,7 @@ describe Betsy::Shop do
   describe "get_shop" do
     it "returns a shop object with all data when a request is made" do
       stub_request(:get, "https://openapi.etsy.com/v3/application/shops/1")
-        .to_return(body: SINGLE_SHOP)
+        .to_return(status: 200, body: SINGLE_SHOP)
       shop = Betsy::Shop.get_shop("1")
       expect(shop).to be_kind_of(Betsy::Shop)
       expect(shop.shop_id).to eq 1
@@ -57,7 +57,7 @@ describe Betsy::Shop do
   describe "update_shop" do
     it "returns a shop" do
       stub_request(:put, "https://openapi.etsy.com/v3/application/shops/1")
-        .to_return(body: SINGLE_SHOP)
+        .to_return(status: 200, body: SINGLE_SHOP)
       etsy_account = EtsyAccount.create!(access_token: "token", refresh_token: "refresh", expires_in: 3600, state: "state", code_verifier: "code_verifier", last_token_refresh: DateTime.now)
       shop = Betsy::Shop.update_shop("1", etsy_account: etsy_account, announcement: "Testing")
       expect(shop).to be_kind_of(Betsy::Shop)
@@ -68,7 +68,7 @@ describe Betsy::Shop do
   describe "get_shop_by_owner_user_id" do
     it "returns a shop" do
       stub_request(:get, "https://openapi.etsy.com/v3/application/users/1/shops")
-        .to_return(body: SINGLE_SHOP)
+        .to_return(status: 200, body: SINGLE_SHOP)
       shop = Betsy::Shop.get_shop_by_owner_user_id(1)
       expect(shop).to be_kind_of(Betsy::Shop)
       expect(shop.shop_id).to eq 1
@@ -78,7 +78,7 @@ describe Betsy::Shop do
   describe "find_shops" do
     it "multiple shops" do
       stub_request(:get, "https://openapi.etsy.com/v3/application/shops?shop_name=test")
-        .to_return(body: MULTIPLE_SHOPS)
+        .to_return(status: 200, body: MULTIPLE_SHOPS)
       shops = Betsy::Shop.find_shops("test")
       expect(shops).to be_an_instance_of Array
       expect(shops.count).to eq 2

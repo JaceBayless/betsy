@@ -4,7 +4,7 @@ describe Betsy::LedgerEntry do
   describe "get_shop_payment_account_ledger_entries" do
     it "returns the shop payment account ledger entries" do
       stub_request(:get, "https://openapi.etsy.com/v3/application/shops/1/payment-account/ledger-entries")
-        .to_return(body: LEDGER_ENTRIES)
+        .to_return(status: 200, body: LEDGER_ENTRIES)
       ledger_entries = Betsy::LedgerEntry.get_shop_payment_account_ledger_entries(1)
       expect(ledger_entries).to be_an_instance_of Array
       expect(ledger_entries.first.entry_id).to eq 1

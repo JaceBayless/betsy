@@ -35,7 +35,7 @@ describe Betsy::Model do
 
     it "properly returns the value when the method is called" do
       stub_request(:any, "https://openapi.etsy.com/endpoint")
-        .to_return(body: '{"test_attr": "test"}', status: 200)
+        .to_return(status: 200, body: '{"test_attr": "test"}', status: 200)
       expect(Betsy::Test.make_request(:get, "/endpoint").test_attr).to eq("test")
     end
   end
@@ -43,7 +43,7 @@ describe Betsy::Model do
   describe "ClassMethods#make_request" do
     it "can make make get, post, put, patch, and delete calls" do
       stub_request(:any, "https://openapi.etsy.com/endpoint")
-        .to_return(body: '{"test_attr": "test"}', status: 200)
+        .to_return(status: 200, body: '{"test_attr": "test"}', status: 200)
       expect(Betsy::Test.make_request(:get, "/endpoint")).to be_kind_of(Betsy::Test)
       expect(Betsy::Test.make_request(:post, "/endpoint")).to be_kind_of(Betsy::Test)
       expect(Betsy::Test.make_request(:put, "/endpoint")).to be_kind_of(Betsy::Test)
@@ -53,9 +53,9 @@ describe Betsy::Model do
 
     it "checks token expiration and deletes etsy_account from options" do
       stub_request(:any, "https://openapi.etsy.com/endpoint")
-        .to_return(body: '{"test_attr": "test"}', status: 200)
+        .to_return(status: 200, body: '{"test_attr": "test"}', status: 200)
       stub_request(:post, "https://api.etsy.com/v3/public/oauth/token")
-        .to_return(body: '{"access_token": "refreshed_token", "expires_in": 3600, "refresh_token": "refreshed_refresh_token"}')
+        .to_return(status: 200, body: '{"access_token": "refreshed_token", "expires_in": 3600, "refresh_token": "refreshed_refresh_token"}')
       etsy_account = EtsyAccount.create!(access_token: "token", refresh_token: "refresh", expires_in: 0, state: "state", code_verifier: "code_verifier", last_token_refresh: DateTime.now - 60)
       Betsy::Test.make_request(:get, "/endpoint", etsy_account: etsy_account)
       expect(etsy_account.access_token).to eq "refreshed_token"
@@ -77,7 +77,7 @@ describe Betsy::Model do
 
     it "refreshes the access token, expiration time, refresh token and last token refresh time" do
       stub_request(:post, "https://api.etsy.com/v3/public/oauth/token")
-        .to_return(body: '{"access_token": "refreshed_token", "expires_in": 3600, "refresh_token": "refreshed_refresh_token"}')
+        .to_return(status: 200, body: '{"access_token": "refreshed_token", "expires_in": 3600, "refresh_token": "refreshed_refresh_token"}')
       etsy_account = EtsyAccount.create!(access_token: "token", refresh_token: "refresh", expires_in: 0, state: "state", code_verifier: "code_verifier", last_token_refresh: DateTime.now - 60)
       Betsy::Test.check_token_expiration(etsy_account)
       expect(etsy_account.access_token).to eq "refreshed_token"
@@ -100,13 +100,25 @@ describe Betsy::Model do
 
   describe "ClassMethods#handle_response" do
     it "returns one object if count is present in response" do
-      expect(Betsy::Test.handle_response(JSON.parse('{"test_attr": "test"}'))).to be_kind_of(Betsy::Test)
+      stub_request(:get, "https://www.testing.com").to_return(status: 200, body: '{"test_attr": "test"}')
+      expect(Betsy::Test.handle_response(Faraday.get("https://www.testing.com"))).to be_kind_of(Betsy::Test)
     end
 
     it "returns multiple objects if count is present in response" do
-      response = Betsy::Test.handle_response(JSON.parse('{ "count": 2, "results": [{ "test_attr": "test1" }, { "test_attr": "test2" }] }'))
+      stub_request(:get, "https://www.testing.com")
+        .to_return(status: 200, body: '{ "count": 2, "results": [{ "test_attr": "test1" }, { "test_attr": "test2" }] }')
+      response = Betsy::Test.handle_response(Faraday.get("https://www.testing.com"))
       expect(response).to be_an_instance_of(Array)
       expect(response.count).to eq 2
+    end
+
+    it "returns a Betsy::Error when the return status is not 200" do
+      stub_request(:get, "https://www.testing.com")
+        .to_return(status: 500, body: '{ "error": "string" }')
+      response = Betsy::Test.handle_response(Faraday.get("https://www.testing.com"))
+      expect(response).to be_kind_of Betsy::Error
+      expect(response.status).to eq 500
+      expect(response.error).to eq "string"
     end
   end
 end

@@ -4,7 +4,7 @@ describe Betsy::ShopReceiptTransaction do
   describe "get_shop_receipt_transactions_by_listing" do
     it "gets receipt transactions by a listing" do
       stub_request(:get, "https://openapi.etsy.com/v3/application/shops/1/listings/1/transactions")
-        .to_return(body: MULTIPLE_SHOP_RECEIPT_TRANSACTIONS)
+        .to_return(status: 200, body: MULTIPLE_SHOP_RECEIPT_TRANSACTIONS)
       transactions = Betsy::ShopReceiptTransaction.get_shop_receipt_transactions_by_listing(1, 1)
       transaction = transactions.first
       expect(transactions).to be_an_instance_of Array
@@ -34,7 +34,7 @@ describe Betsy::ShopReceiptTransaction do
   describe "get_shop_receipt_transactions_by_receipt" do
     it "gets receipt transactions by a receipt" do
       stub_request(:get, "https://openapi.etsy.com/v3/application/shops/1/receipts/1/transactions")
-        .to_return(body: MULTIPLE_SHOP_RECEIPT_TRANSACTIONS)
+        .to_return(status: 200, body: MULTIPLE_SHOP_RECEIPT_TRANSACTIONS)
       transactions = Betsy::ShopReceiptTransaction.get_shop_receipt_transactions_by_receipt(1, 1)
       transaction = transactions.first
       expect(transactions).to be_an_instance_of Array
@@ -46,7 +46,7 @@ describe Betsy::ShopReceiptTransaction do
   describe "get_shop_receipt_transaction" do
     it "gets a receipt transaction" do
       stub_request(:get, "https://openapi.etsy.com/v3/application/shops/1/transactions/1")
-        .to_return(body: SINGLE_SHOP_RECEIPT_TRANSACTION)
+        .to_return(status: 200, body: SINGLE_SHOP_RECEIPT_TRANSACTION)
       transaction = Betsy::ShopReceiptTransaction.get_shop_receipt_transaction(1, 1)
       expect(transaction).to be_kind_of Betsy::ShopReceiptTransaction
       expect(transaction.transaction_id).to eq 1
@@ -56,7 +56,7 @@ describe Betsy::ShopReceiptTransaction do
   describe "get_shop_receipt_transactions_by_shop" do
     it "gets all the receipt transactions for a shop" do
       stub_request(:get, "https://openapi.etsy.com/v3/application/shops/1/transactions")
-        .to_return(body: MULTIPLE_SHOP_RECEIPT_TRANSACTIONS)
+        .to_return(status: 200, body: MULTIPLE_SHOP_RECEIPT_TRANSACTIONS)
       transactions = Betsy::ShopReceiptTransaction.get_shop_receipt_transactions_by_shop(1)
       transaction = transactions.first
       expect(transactions).to be_an_instance_of Array

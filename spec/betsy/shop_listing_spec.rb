@@ -4,7 +4,7 @@ describe Betsy::ShopListing do
   describe "create_draft_listing" do
     it "creates a draft listing given a shop id" do
       stub_request(:post, "https://openapi.etsy.com/v3/application/shops/1/listings")
-        .to_return(body: SINGLE_LISTING)
+        .to_return(status: 200, body: SINGLE_LISTING)
       listing = Betsy::ShopListing.create_draft_listing(1)
       expect(listing).to be_kind_of Betsy::ShopListing
       expect(listing.listing_id).to eq 1
@@ -60,7 +60,7 @@ describe Betsy::ShopListing do
   describe "get_listings_by_shop" do
     it "returns an array of ShopListings" do
       stub_request(:get, "https://openapi.etsy.com/v3/application/shops/1/listings")
-        .to_return(body: MULTIPLE_LISTINGS)
+        .to_return(status: 200, body: MULTIPLE_LISTINGS)
       listings = Betsy::ShopListing.get_listings_by_shop(1)
       expect(listings.count).to eq 1
       expect(listings.first).to be_kind_of Betsy::ShopListing
@@ -71,7 +71,7 @@ describe Betsy::ShopListing do
   describe "delete_listing" do
     it "returns the ShopListing that was deleted" do
       stub_request(:delete, "https://openapi.etsy.com/v3/application/listings/1")
-        .to_return(body: SINGLE_LISTING)
+        .to_return(status: 200, body: SINGLE_LISTING)
       listing = Betsy::ShopListing.delete_listing(1)
       expect(listing).to be_kind_of Betsy::ShopListing
       expect(listing.listing_id).to eq 1
@@ -81,7 +81,7 @@ describe Betsy::ShopListing do
   describe "get_listing" do
     it "returns the requested listing" do
       stub_request(:get, "https://openapi.etsy.com/v3/application/listings/1")
-        .to_return(body: SINGLE_LISTING)
+        .to_return(status: 200, body: SINGLE_LISTING)
       listing = Betsy::ShopListing.get_listing(1)
       expect(listing).to be_kind_of Betsy::ShopListing
       expect(listing.listing_id).to eq 1
@@ -91,7 +91,7 @@ describe Betsy::ShopListing do
   describe "find_all_listings_active" do
     it "returns an array of all active listings" do
       stub_request(:get, "https://openapi.etsy.com/v3/application/listings/active")
-        .to_return(body: MULTIPLE_LISTINGS)
+        .to_return(status: 200, body: MULTIPLE_LISTINGS)
       listings = Betsy::ShopListing.find_all_listings_active
       expect(listings.count).to eq 1
       expect(listings.first).to be_kind_of Betsy::ShopListing
@@ -102,7 +102,7 @@ describe Betsy::ShopListing do
   describe "find_all_active_listings_by_shop" do
     it "returns an array of all active listings for the given shop" do
       stub_request(:get, "https://openapi.etsy.com/v3/application/shops/1/listings/active")
-        .to_return(body: MULTIPLE_LISTINGS)
+        .to_return(status: 200, body: MULTIPLE_LISTINGS)
       listings = Betsy::ShopListing.find_all_active_listings_by_shop(1)
       expect(listings.count).to eq 1
       expect(listings.first).to be_kind_of Betsy::ShopListing
@@ -113,7 +113,7 @@ describe Betsy::ShopListing do
   describe "get_listings_by_listing_ids" do
     it "returns a list of listings given an array of ids" do
       stub_request(:get, "https://openapi.etsy.com/v3/application/listings/batch")
-        .to_return(body: MULTIPLE_LISTINGS)
+        .to_return(status: 200, body: MULTIPLE_LISTINGS)
       listings = Betsy::ShopListing.get_listings_by_listing_ids
       expect(listings.count).to eq 1
       expect(listings.first).to be_kind_of Betsy::ShopListing
@@ -124,7 +124,7 @@ describe Betsy::ShopListing do
   describe "get_featured_listings_by_shop" do
     it "returns an array of featured listings for a shop" do
       stub_request(:get, "https://openapi.etsy.com/v3/application/shops/1/listings/featured")
-        .to_return(body: MULTIPLE_LISTINGS)
+        .to_return(status: 200, body: MULTIPLE_LISTINGS)
       listings = Betsy::ShopListing.get_featured_listings_by_shop(1)
       expect(listings.count).to eq 1
       expect(listings.first).to be_kind_of Betsy::ShopListing
@@ -143,7 +143,7 @@ describe Betsy::ShopListing do
   describe "update_listing_property" do
     it "returns a listing property" do
       stub_request(:put, "https://openapi.etsy.com/v3/application/shops/1/listings/1/properties/1")
-        .to_return(body: SINGLE_LISTING_PROPERTY)
+        .to_return(status: 200, body: SINGLE_LISTING_PROPERTY)
       listing_property = Betsy::ShopListing.update_listing_property(1, 1, 1)
       expect(listing_property).to be_kind_of Betsy::ShopListing
       expect(listing_property.property_id).to eq 1
@@ -158,7 +158,7 @@ describe Betsy::ShopListing do
   describe "get_listing_properties" do
     it "returns an array of properties for a given listing" do
       stub_request(:get, "https://openapi.etsy.com/v3/application/shops/1/listings/1/properties")
-        .to_return(body: MULTIPLE_LISTING_PROPERTIES)
+        .to_return(status: 200, body: MULTIPLE_LISTING_PROPERTIES)
       listing_properties = Betsy::ShopListing.get_listing_properties(1, 1)
       expect(listing_properties).to be_an_instance_of Array
       expect(listing_properties.count).to eq 2
@@ -169,7 +169,7 @@ describe Betsy::ShopListing do
   describe "update_listing" do
     it "updates a listing and returns the updated listing" do
       stub_request(:put, "https://openapi.etsy.com/v3/application/shops/1/listings/1")
-        .to_return(body: SINGLE_LISTING)
+        .to_return(status: 200, body: SINGLE_LISTING)
       listing = Betsy::ShopListing.update_listing(1, 1)
       expect(listing).to be_kind_of Betsy::ShopListing
       expect(listing.listing_id).to eq 1
@@ -179,7 +179,7 @@ describe Betsy::ShopListing do
   describe "get_listings_by_shop_receipt" do
     it "returns listings given a shop and receipt id" do
       stub_request(:get, "https://openapi.etsy.com/v3/application/shops/1/receipts/1/listings")
-        .to_return(body: MULTIPLE_LISTINGS)
+        .to_return(status: 200, body: MULTIPLE_LISTINGS)
       listings = Betsy::ShopListing.get_listings_by_shop_receipt(1, 1)
       expect(listings.count).to eq 1
       expect(listings.first).to be_kind_of Betsy::ShopListing
@@ -190,7 +190,7 @@ describe Betsy::ShopListing do
   describe "get_listing_by_shop_section_id" do
     it "returns listing given a shop id" do
       stub_request(:get, "https://openapi.etsy.com/v3/application/shops/1/shop-sections/listings")
-        .to_return(body: MULTIPLE_LISTINGS)
+        .to_return(status: 200, body: MULTIPLE_LISTINGS)
       listings = Betsy::ShopListing.get_listings_by_shop_section_id(1)
       expect(listings.count).to eq 1
       expect(listings.first).to be_kind_of Betsy::ShopListing

@@ -4,7 +4,7 @@ describe Betsy::ShopReceipt do
   describe "get_shop_receipt" do
     it "returns a single shop receipt" do
       stub_request(:get, "https://openapi.etsy.com/v3/application/shops/1/receipts/1")
-        .to_return(body: SINGLE_SHOP_RECEIPT)
+        .to_return(status: 200, body: SINGLE_SHOP_RECEIPT)
       receipt = Betsy::ShopReceipt.get_shop_receipt(1, 1)
       expect(receipt).to be_kind_of Betsy::ShopReceipt
       expect(receipt.receipt_id).to eq 1
@@ -47,7 +47,7 @@ describe Betsy::ShopReceipt do
   describe "get_shop_receipts" do
     it "returns receipts for a given shop" do
       stub_request(:get, "https://openapi.etsy.com/v3/application/shops/1/receipts")
-        .to_return(body: MULTIPLE_SHOP_RECEIPTS)
+        .to_return(status: 200, body: MULTIPLE_SHOP_RECEIPTS)
       receipts = Betsy::ShopReceipt.get_shop_receipts(1)
       receipt = receipts.first
       expect(receipts).to be_an_instance_of Array
@@ -59,7 +59,7 @@ describe Betsy::ShopReceipt do
   describe "create_receipt_shipment" do
     it "updates the tracking on a receipt" do
       stub_request(:post, "https://openapi.etsy.com/v3/application/shops/1/receipts/1/tracking")
-        .to_return(body: SINGLE_SHOP_RECEIPT)
+        .to_return(status: 200, body: SINGLE_SHOP_RECEIPT)
       receipt = Betsy::ShopReceipt.create_receipt_shipment(1, 1)
       expect(receipt).to be_kind_of Betsy::ShopReceipt
       expect(receipt.receipt_id).to eq 1

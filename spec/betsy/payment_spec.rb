@@ -4,7 +4,7 @@ describe Betsy::Payment do
   describe "get_payment_account_ledger_entry_payments" do
     it "gets a payment from a payment account ledger entry ID" do
       stub_request(:get, "https://openapi.etsy.com/v3/application/shops/1/payment-account/ledger-entries/payments")
-        .to_return(body: PAYMENTS)
+        .to_return(status: 200, body: PAYMENTS)
       payments = Betsy::Payment.get_payment_account_ledger_entry_payments(1)
       payment = payments.first
       expect(payments).to be_an_instance_of Array
@@ -39,7 +39,7 @@ describe Betsy::Payment do
   describe "get_shop_payment_by_receipt_id" do
     it "gets a shop payment given a receipt id" do
       stub_request(:get, "https://openapi.etsy.com/v3/application/shops/1/receipts/1/payments")
-        .to_return(body: PAYMENTS)
+        .to_return(status: 200, body: PAYMENTS)
       payments = Betsy::Payment.get_shop_payment_by_receipt_id(1, 1)
       expect(payments).to be_an_instance_of Array
       expect(payments.first).to be_kind_of Betsy::Payment
@@ -50,7 +50,7 @@ describe Betsy::Payment do
   describe "get_payments" do
     it "gets all the payments for a shop" do
       stub_request(:get, "https://openapi.etsy.com/v3/application/shops/1/payments")
-        .to_return(body: PAYMENTS)
+        .to_return(status: 200, body: PAYMENTS)
       payments = Betsy::Payment.get_payments(1)
       expect(payments).to be_an_instance_of Array
       expect(payments.first).to be_kind_of Betsy::Payment

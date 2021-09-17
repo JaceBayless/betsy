@@ -4,7 +4,7 @@ describe Betsy::ShopListingInventory do
   describe "get_listing_inventory" do
     it "gets the inventory for a listing" do
       stub_request(:get, "https://openapi.etsy.com/v3/application/listings/1/inventory")
-        .to_return(body: LISTING_INVENTORY)
+        .to_return(status: 200, body: LISTING_INVENTORY)
       inventory = Betsy::ShopListingInventory.get_listing_inventory(1)
       expect(inventory).to be_kind_of Betsy::ShopListingInventory
       expect(inventory.products).to be_an_instance_of Array
@@ -18,7 +18,7 @@ describe Betsy::ShopListingInventory do
   describe "update_listing_inventory" do
     it "updates and returns the inventory for a listing" do
       stub_request(:put, "https://openapi.etsy.com/v3/application/listings/1/inventory")
-        .to_return(body: LISTING_INVENTORY)
+        .to_return(status: 200, body: LISTING_INVENTORY)
       inventory = Betsy::ShopListingInventory.update_listing_inventory(1)
       expect(inventory).to be_kind_of Betsy::ShopListingInventory
       expect(inventory.products).to be_an_instance_of Array
