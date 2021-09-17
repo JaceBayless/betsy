@@ -90,11 +90,11 @@ module Betsy
       options = {
         grant_type: "authorization_code",
         client_id: api_key,
-        redirect_uri: "#{ENV["ETSY_REDIRECT_URI_BASE"]}/etsy_response_listener",
+        redirect_uri: "#{redirect_uri_base}/etsy_response_listener",
         code: params[:code],
         code_verifier: etsy_account.code_verifier
       }
-      response = JSON.parse(::Faraday.post("https://api.etsy.com/v3/public/oauth/token", options).body)
+      response = JSON.parse(Faraday.post("https://api.etsy.com/v3/public/oauth/token", options).body)
       etsy_account.access_token = response["access_token"]
       etsy_account.refresh_token = response["refresh_token"]
       etsy_account.expires_in = response["expires_in"]
