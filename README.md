@@ -31,19 +31,7 @@ Finally, you need to run the migration:
 
 ## Usage
 
-First, you will want to start by going to Etsy and setting the Callback URLs for your application. Betsy works by listening at `/etsy_response_listener` for callbacks from Etsy, e.g. `http://someurl.com/etsy_response_listener`. When in development it's easiest to set the callback URL as `http://www.lvh.me:3000/etsy_response_listener`.
-
-After setting up your callback URLs on Etsy you'll need to tell the Betsy gem what your Etsy API key and redirect URI is.
-
-```ruby
-Betsy.api_key = "XXXXXXX"
-Betsy.redirect_uri_base = "http://www.someurl.com"
-```
-**Notice** that redirect_uri_base is `http://someurl.com` rather than `http://someurl.com/etsy_response_listener`.
-
-This can be done two ways: 
-- through console
-- by creating an initializer
+After running the generator and migrating, open config/initializers/betsy.rb and set your API key and redirect url to the correct values.
 
 Now Betsy should be configured for use. 
 

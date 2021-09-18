@@ -18,6 +18,10 @@ module Betsy
         migration_template "create_etsy_accounts.rb", "db/migrate/create_etsy_accounts.rb", migration_version: migration_version
       end
 
+      def copy_betsy_initalizer
+        template "betsy.rb", "config/initializers/betsy.rb"
+      end
+
       def migration_version
         "[#{Rails::VERSION::MAJOR}.#{Rails::VERSION::MINOR}]"
       end
