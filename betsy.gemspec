@@ -37,7 +37,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency("webmock", "~> 3.13.0")
   spec.add_development_dependency("coveralls")
 
-  spec.add_dependency("faraday", "1.5.1")
+  spec.add_dependency("faraday", "~> 0.10")
 
   # For more information and examples about making a new gem, checkout our
   # guide at: https://bundler.io/guides/creating_gem.html
