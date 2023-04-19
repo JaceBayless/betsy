@@ -5,23 +5,18 @@ module Betsy
     include Betsy::Model
 
     attribute :user_id
-    attribute :login_name
+    attribute :shop_id
     attribute :primary_email
     attribute :first_name
     attribute :last_name
-    attribute :create_timestamp
-    attribute :referred_by_user_id
-    attribute :use_new_inventory_endpoints
-    attribute :is_seller
-    attribute :bio
-    attribute :gender
-    attribute :birth_month
-    attribute :birth_day
-    attribute :transaction_buy_count
-    attribute :transaction_sold_count
+    attribute :image_url_75x75
 
     def self.get_user(user_id, options = {})
       make_request(:get, "/v3/application/users/#{user_id}", options)
+    end
+
+    def self.get_me(options = {})
+      make_request(:get, "/v3/application/users/me", options)
     end
   end
 end
