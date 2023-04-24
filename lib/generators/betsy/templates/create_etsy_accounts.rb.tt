@@ -1,6 +1,6 @@
 class CreateEtsyAccounts < ActiveRecord::Migration<%= migration_version %>
   def change
-    create_table :etsy_accounts do |t|
+    create_table <%= Betsy.account_class.table_name %> do |t|
       t.string :access_token
       t.string :refresh_token
       t.integer :expires_in

@@ -11,7 +11,8 @@ module Betsy
       source_root File.expand_path("../templates", __FILE__)
 
       def copy_betsy_model
-        template "etsy_account.rb", "app/models/etsy_account.rb"
+        model_file = Betsy.account_model.underscore
+        template "etsy_account.rb", "app/models/#{model_file}.rb"
       end
 
       def copy_betsy_migration

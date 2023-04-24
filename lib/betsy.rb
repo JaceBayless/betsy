@@ -33,7 +33,8 @@ module Betsy
 
   mattr_accessor :api_key
   mattr_accessor :redirect_uri_base
-
+  mattr_accessor :account_model, default: "EtsyAccount"
+  
   ALL_SCOPES = ["address_r",
     "address_w",
     "billing_r",
@@ -72,7 +73,7 @@ module Betsy
     code_verifier = generate_code_verifier
     code_challenge = Digest::SHA256.base64digest(code_verifier).tr("+/", "-_").tr("=", "")
 
-    EtsyAccount.create(state: state, code_verifier: code_verifier)
+    account_class.create(state: state, code_verifier: code_verifier)
 
     "https://www.etsy.com/oauth/connect" \
     "?response_type=code" \
@@ -85,7 +86,7 @@ module Betsy
   end
 
   def self.request_access_token(params)
-    etsy_account = EtsyAccount.find_by(state: params[:state])
+    etsy_account = account_class.find_by(state: params[:state])
     if etsy_account.present?
       options = {
         grant_type: "authorization_code",
@@ -103,6 +104,10 @@ module Betsy
     else
       raise "The state provided to /etsy_response_listener was an invalid state, this could be a sign of a CSRF attack"
     end
+  end
+
+  def self.account_class
+    @@account_class ||= account_model.constantize
   end
 
   class << self
