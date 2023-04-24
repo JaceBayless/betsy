@@ -15,14 +15,9 @@ module Betsy
         options.delete(:etsy_account)
 
         if [:post, :put, :patch].include?(request_type)
-          headers.reverse_merge(content_type: "application/json")
+          headers = headers.reverse_merge(content_type: "application/json")
           options = options.to_json
         end
-
-        p request_type
-        p endpoint
-        p options
-        p headers
 
         response = Faraday.send(request_type, "#{BASE_ETSY_API_URL}#{endpoint}", options, headers)
         handle_response(response)
