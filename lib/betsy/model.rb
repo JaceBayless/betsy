@@ -19,6 +19,11 @@ module Betsy
           options = options.to_json
         end
 
+        p request_type
+        p endpoint
+        p options
+        p headers
+
         response = Faraday.send(request_type, "#{BASE_ETSY_API_URL}#{endpoint}", options, headers)
         handle_response(response)
       end
