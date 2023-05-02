@@ -34,7 +34,7 @@ module Betsy
   mattr_accessor :api_key
   mattr_accessor :redirect_uri_base
   mattr_accessor :account_model, default: "EtsyAccount"
-  
+
   ALL_SCOPES = ["address_r",
     "address_w",
     "billing_r",
