@@ -1,2 +1,0 @@
-class EtsyAccount < ApplicationRecord
-end

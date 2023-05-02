@@ -1,0 +1,2 @@
+class <%= Betsy.account_model %> < ApplicationRecord
+end

@@ -1,8 +1,8 @@
 PATH
   remote: .
   specs:
-    betsy (0.1.0)
-      faraday (= 1.5.1)
+    betsy (0.2.0)
+      faraday (>= 0.10)
 
 GEM
   remote: https://rubygems.org/
@@ -83,23 +83,8 @@ GEM
     diff-lcs (1.4.4)
     docile (1.4.0)
     erubi (1.10.0)
-    faraday (1.5.1)
-      faraday-em_http (~> 1.0)
-      faraday-em_synchrony (~> 1.0)
-      faraday-excon (~> 1.1)
-      faraday-httpclient (~> 1.0.1)
-      faraday-net_http (~> 1.0)
-      faraday-net_http_persistent (~> 1.1)
-      faraday-patron (~> 1.0)
+    faraday (0.17.6)
       multipart-post (>= 1.2, < 3)
-      ruby2_keywords (>= 0.0.4)
-    faraday-em_http (1.0.0)
-    faraday-em_synchrony (1.0.0)
-    faraday-excon (1.1.0)
-    faraday-httpclient (1.0.1)
-    faraday-net_http (1.0.1)
-    faraday-net_http_persistent (1.2.0)
-    faraday-patron (1.0.0)
     globalid (0.5.2)
       activesupport (>= 5.0)
     hashdiff (1.0.1)
@@ -115,7 +100,7 @@ GEM
     method_source (1.0.0)
     mini_mime (1.1.0)
     minitest (5.14.4)
-    multipart-post (2.1.1)
+    multipart-post (2.3.0)
     nio4r (2.5.8)
     nokogiri (1.12.2-x86_64-linux)
       racc (~> 1.4)
@@ -185,7 +170,6 @@ GEM
       rubocop (>= 1.7.0, < 2.0)
       rubocop-ast (>= 0.4.0)
     ruby-progressbar (1.11.0)
-    ruby2_keywords (0.0.5)
     simplecov (0.16.1)
       docile (~> 1.1)
       json (>= 1.8, < 3)
@@ -234,4 +218,4 @@ DEPENDENCIES
   webmock (~> 3.13.0)
 
 BUNDLED WITH
-   2.2.17
+   2.2.33

@@ -10,6 +10,7 @@ module Betsy
     attribute :seller_user_id
     attribute :buyer_user_id
     attribute :create_timestamp
+    attribute :created_timestamp
     attribute :paid_timestamp
     attribute :shipped_timestamp
     attribute :quantity
@@ -20,9 +21,19 @@ module Betsy
     attribute :listing_id
     attribute :transaction_type
     attribute :product_id
+    attribute :sku
     attribute :price
     attribute :shipping_cost
     attribute :variations
+    attribute :product_data
+    attribute :shipping_profile_id
+    attribute :min_processing_days
+    attribute :max_processing_days
+    attribute :shipping_method
+    attribute :shipping_upgrade
+    attribute :expected_ship_date
+    attribute :buyer_coupon
+    attribute :shop_coupon
 
     def self.get_shop_receipt_transactions_by_listing(shop_id, listing_id, options = {})
       make_request(:get, "/v3/application/shops/#{shop_id}/listings/#{listing_id}/transactions", options)

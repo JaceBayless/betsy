@@ -2,6 +2,16 @@ require "spec_helper"
 require "action_controller"
 
 describe Betsy do
+  before(:each) do
+    Betsy.account_model = "EtsyAccount"
+    Betsy.class_variable_set :@@account_class, nil
+  end
+
+  it "returns the account_model constantized" do
+    Betsy.account_model = "Betsy::Model"
+    expect(Betsy.account_class).to be Betsy::Model
+  end
+
   describe "authorization_url" do
     it "errors when there is no api_key present" do
       Betsy.api_key = nil
