@@ -15,6 +15,7 @@ describe Betsy::ShopReceiptTransaction do
       expect(transaction.seller_user_id).to eq 1
       expect(transaction.buyer_user_id).to eq 1
       expect(transaction.create_timestamp).to eq 946684800
+      expect(transaction.created_timestamp).to eq 946684800
       expect(transaction.paid_timestamp).to eq 946684800
       expect(transaction.shipped_timestamp).to eq 946684800
       expect(transaction.quantity).to eq 0
@@ -22,12 +23,22 @@ describe Betsy::ShopReceiptTransaction do
       expect(transaction.receipt_id).to eq 1
       expect(transaction.is_digital).to eq true
       expect(transaction.file_data).to eq "string"
-      expect(transaction.listing_id).to eq 1
+      expect(transaction.listing_id).to eq 0
       expect(transaction.transaction_type).to eq "string"
       expect(transaction.product_id).to eq 1
+      expect(transaction.sku).to eq "string"
       expect(transaction.price).to be_an_instance_of Hash
       expect(transaction.shipping_cost).to be_an_instance_of Hash
       expect(transaction.variations).to be_an_instance_of Array
+      expect(transaction.product_data).to be_an_instance_of Array
+      expect(transaction.shipping_profile_id).to eq 1
+      expect(transaction.min_processing_days).to eq 1
+      expect(transaction.max_processing_days).to eq 1
+      expect(transaction.shipping_method).to eq "string"
+      expect(transaction.shipping_upgrade).to eq "string"
+      expect(transaction.expected_ship_date).to eq 946684800
+      expect(transaction.buyer_coupon).to eq 0
+      expect(transaction.shop_coupon).to eq 0
     end
   end
 
