@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     betsy (0.2.0)
-      faraday (~> 0.10)
+      faraday (>= 0.10)
 
 GEM
   remote: https://rubygems.org/
