@@ -18,5 +18,9 @@ module Betsy
     def self.get_reviews_by_shop(shop_id, options = {})
       make_request(:get, "/v3/application/shops/#{shop_id}/reviews", options)
     end
+
+    def self.get_reviews_by_listing(listing_id, options = {})
+      make_request(:get, "/v3/application/listings/#{listing_id}/reviews", options)
+    end
   end
 end

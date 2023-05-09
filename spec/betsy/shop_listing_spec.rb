@@ -54,6 +54,9 @@ describe Betsy::ShopListing do
       expect(listing.language).to eq "string"
       expect(listing.price).to be_an_instance_of Hash
       expect(listing.taxonomy_id).to eq 0
+      expect(listing.production_partners).to be_an_instance_of Array
+      expect(listing.skus).to be_an_instance_of Array
+      expect(listing.views).to eq 0
     end
   end
 
