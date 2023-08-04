@@ -52,6 +52,9 @@ module Betsy
     attribute :language
     attribute :price
     attribute :taxonomy_id
+    attribute :production_partners
+    attribute :skus
+    attribute :views
 
     # listing properties
     attribute :property_id

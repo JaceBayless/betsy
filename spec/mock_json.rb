@@ -266,7 +266,14 @@ SINGLE_LISTING = '{
     "divisor": 0,
     "currency_code": "string"
   },
-  "taxonomy_id": 0
+  "taxonomy_id": 0,
+  "production_partners": [
+    "string"
+  ],
+  "skus": [
+    "string"
+  ],
+  "views": 0
 }'
 
 MULTIPLE_LISTINGS = '{
@@ -329,7 +336,14 @@ MULTIPLE_LISTINGS = '{
         "divisor": 0,
         "currency_code": "string"
       },
-      "taxonomy_id": 0
+      "taxonomy_id": 0,
+      "production_partners": [
+        "string"
+      ],
+      "skus": [
+        "string"
+      ],
+      "views": 0
     }
   ]
 }'
@@ -582,7 +596,14 @@ LISTING_INVENTORY = '{
       "divisor": 0,
       "currency_code": "string"
     },
-    "taxonomy_id": 0
+    "taxonomy_id": 0,
+    "production_partners": [
+      "string"
+    ],
+    "skus": [
+      "string"
+    ],
+    "views": 0
   }
 }'
 
