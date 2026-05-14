@@ -131,13 +131,13 @@ describe Betsy::Model do
   describe "ClassMethods#handle_response" do
     it "returns one object if count is present in response" do
       stub_request(:get, "https://www.testing.com").to_return(status: 200, body: '{"test_attr": "test"}')
-      expect(Betsy::Test.handle_response(Faraday.get("https://www.testing.com"))).to be_kind_of(Betsy::Test)
+      expect(Betsy::Test.handle_response(Net::HTTP.get_response(URI("https://www.testing.com")))).to be_kind_of(Betsy::Test)
     end
 
     it "returns multiple objects if count is present in response" do
       stub_request(:get, "https://www.testing.com")
         .to_return(status: 200, body: '{ "count": 2, "results": [{ "test_attr": "test1" }, { "test_attr": "test2" }] }')
-      response = Betsy::Test.handle_response(Faraday.get("https://www.testing.com"))
+      response = Betsy::Test.handle_response(Net::HTTP.get_response(URI("https://www.testing.com")))
       expect(response).to be_an_instance_of(Array)
       expect(response.count).to eq 2
     end
@@ -145,7 +145,7 @@ describe Betsy::Model do
     it "returns a Betsy::Error when the return status is not 200" do
       stub_request(:get, "https://www.testing.com")
         .to_return(status: 500, body: '{ "error": "string" }')
-      response = Betsy::Test.handle_response(Faraday.get("https://www.testing.com"))
+      response = Betsy::Test.handle_response(Net::HTTP.get_response(URI("https://www.testing.com")))
       expect(response).to be_kind_of Betsy::Error
       expect(response.status).to eq 500
       expect(response.error).to eq "string"
@@ -156,7 +156,7 @@ describe Betsy::Model do
     it "builds multiple objects when there is there are multiple results" do
       stub_request(:get, "https://www.testing.com")
         .to_return(status: 200, body: '{ "count": 2, "results": [{ "test_attr": "test1" }, { "test_attr": "test2" }] }')
-      body = JSON.parse(Faraday.get("https://www.testing.com").body)
+      body = JSON.parse(Net::HTTP.get_response(URI("https://www.testing.com")).body)
       response = Betsy::Test.build_objects(body)
       expect(response).to be_an_instance_of Array
       expect(response.first).to be_kind_of Betsy::Test
@@ -165,7 +165,7 @@ describe Betsy::Model do
     it "returns a single object when there is only one result" do
       stub_request(:get, "https://www.testing.com")
         .to_return(status: 200, body: '{ "test_attr": "test1" }')
-      body = JSON.parse(Faraday.get("https://www.testing.com").body)
+      body = JSON.parse(Net::HTTP.get_response(URI("https://www.testing.com")).body)
       response = Betsy::Test.build_objects(body)
       expect(response).to be_kind_of Betsy::Test
       expect(response.test_attr).to eq "test1"

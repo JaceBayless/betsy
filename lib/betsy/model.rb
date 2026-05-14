@@ -9,17 +9,36 @@ module Betsy
         end
       end
 
+      REQUEST_CLASSES = {
+        get: Net::HTTP::Get,
+        post: Net::HTTP::Post,
+        put: Net::HTTP::Put,
+        patch: Net::HTTP::Patch,
+        delete: Net::HTTP::Delete
+      }.freeze
+
       def make_request(request_type, endpoint, options = {})
         check_token_expiration(options[:etsy_account]) if options[:etsy_account]
         headers = access_credentials(options[:etsy_account])
         options.delete(:etsy_account)
 
+        uri = URI("#{BASE_ETSY_API_URL}#{endpoint}")
+
         if [:post, :put, :patch].include?(request_type)
           headers = headers.reverse_merge(content_type: "application/json")
-          options = options.to_json
+          request = REQUEST_CLASSES[request_type].new(uri)
+          request.body = options.to_json
+        else
+          uri.query = URI.encode_www_form(options) if options.any?
+          request = REQUEST_CLASSES[request_type].new(uri)
         end
 
-        response = Faraday.send(request_type, "#{BASE_ETSY_API_URL}#{endpoint}", options, headers)
+        headers.each { |key, value| request[key.to_s] = value }
+
+        response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: uri.scheme == "https") do |http|
+          http.request(request)
+        end
+
         handle_response(response)
       end
 
@@ -32,7 +51,7 @@ module Betsy
             refresh_token: etsy_account.refresh_token,
             client_id: Betsy.api_key
           }
-          response = JSON.parse(Faraday.post("https://api.etsy.com/v3/public/oauth/token", options).body)
+          response = JSON.parse(Net::HTTP.post_form(URI("https://api.etsy.com/v3/public/oauth/token"), options).body)
 
           if response["access_token"].nil?
             raise "Etsy token refresh failed: #{response}"
@@ -53,12 +72,12 @@ module Betsy
       end
 
       def handle_response(response)
-        if response.status == 200
+        if response.code.to_i == 200
           return nil if response.body.empty?
           response = JSON.parse(response.body)
           build_objects(response)
         else
-          Betsy::Error.new(JSON.parse(response.body).merge!("status" => response.status))
+          Betsy::Error.new(JSON.parse(response.body).merge!("status" => response.code.to_i))
         end
       end
 
