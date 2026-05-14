@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     betsy (0.2.3)
+      activesupport (>= 5.0)
 
 GEM
   remote: https://rubygems.org/
