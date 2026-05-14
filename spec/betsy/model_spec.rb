@@ -65,6 +65,12 @@ describe Betsy::Model do
   end
 
   describe "ClassMethods#check_token_expiration" do
+    it "delegates to token_expired? on the account model" do
+      etsy_account = EtsyAccount.create!(access_token: "token", refresh_token: "refresh", expires_in: 1000, state: "state", code_verifier: "code_verifier", last_token_refresh: DateTime.now)
+      expect(etsy_account).to receive(:token_expired?).and_return(false)
+      Betsy::Test.check_token_expiration(etsy_account)
+    end
+
     it "does not attempt to refresh the token if it is not expired" do
       start_time = DateTime.now
       etsy_account = EtsyAccount.create!(access_token: "token", refresh_token: "refresh", expires_in: 1000, state: "state", code_verifier: "code_verifier", last_token_refresh: start_time)

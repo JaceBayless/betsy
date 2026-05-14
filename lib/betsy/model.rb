@@ -43,9 +43,7 @@ module Betsy
       end
 
       def check_token_expiration(etsy_account)
-        if etsy_account.last_token_refresh.nil? ||
-           etsy_account.expires_in.nil? ||
-           etsy_account.last_token_refresh + etsy_account.expires_in <= DateTime.now
+        if etsy_account.token_expired?
           options = {
             grant_type: "refresh_token",
             refresh_token: etsy_account.refresh_token,
