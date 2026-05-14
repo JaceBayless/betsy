@@ -85,6 +85,36 @@ describe Betsy::Model do
       expect(etsy_account.refresh_token).to eq "refreshed_refresh_token"
       expect(etsy_account.last_token_refresh).to be > DateTime.now - 60
     end
+
+    it "triggers a refresh when expires_in is nil instead of crashing" do
+      stub_request(:post, "https://api.etsy.com/v3/public/oauth/token")
+        .to_return(status: 200, body: '{"access_token": "refreshed_token", "expires_in": 3600, "refresh_token": "refreshed_refresh_token"}')
+      etsy_account = EtsyAccount.create!(access_token: "token", refresh_token: "refresh", expires_in: nil, state: "state", code_verifier: "code_verifier", last_token_refresh: DateTime.now)
+      Betsy::Test.check_token_expiration(etsy_account)
+      expect(etsy_account.access_token).to eq "refreshed_token"
+      expect(etsy_account.expires_in).to eq 3600
+      expect(etsy_account.refresh_token).to eq "refreshed_refresh_token"
+    end
+
+    it "triggers a refresh when last_token_refresh is nil instead of crashing" do
+      stub_request(:post, "https://api.etsy.com/v3/public/oauth/token")
+        .to_return(status: 200, body: '{"access_token": "refreshed_token", "expires_in": 3600, "refresh_token": "refreshed_refresh_token"}')
+      etsy_account = EtsyAccount.create!(access_token: "token", refresh_token: "refresh", expires_in: 3600, state: "state", code_verifier: "code_verifier", last_token_refresh: nil)
+      Betsy::Test.check_token_expiration(etsy_account)
+      expect(etsy_account.access_token).to eq "refreshed_token"
+      expect(etsy_account.expires_in).to eq 3600
+      expect(etsy_account.refresh_token).to eq "refreshed_refresh_token"
+    end
+
+    it "raises an error and does not save nil credentials when the refresh response has no access_token" do
+      stub_request(:post, "https://api.etsy.com/v3/public/oauth/token")
+        .to_return(status: 200, body: '{"error": "invalid_grant"}')
+      etsy_account = EtsyAccount.create!(access_token: "token", refresh_token: "refresh", expires_in: 0, state: "state", code_verifier: "code_verifier", last_token_refresh: DateTime.now - 60)
+      expect { Betsy::Test.check_token_expiration(etsy_account) }.to raise_error(RuntimeError, /Etsy token refresh failed/)
+      expect(etsy_account.access_token).to eq "token"
+      expect(etsy_account.expires_in).to eq 0
+      expect(etsy_account.refresh_token).to eq "refresh"
+    end
   end
 
   describe "ClassMethods#access_credentials" do

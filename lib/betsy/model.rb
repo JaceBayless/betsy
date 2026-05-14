@@ -24,13 +24,20 @@ module Betsy
       end
 
       def check_token_expiration(etsy_account)
-        if etsy_account.last_token_refresh + etsy_account.expires_in <= DateTime.now
+        if etsy_account.last_token_refresh.nil? ||
+           etsy_account.expires_in.nil? ||
+           etsy_account.last_token_refresh + etsy_account.expires_in <= DateTime.now
           options = {
             grant_type: "refresh_token",
             refresh_token: etsy_account.refresh_token,
             client_id: Betsy.api_key
           }
           response = JSON.parse(Faraday.post("https://api.etsy.com/v3/public/oauth/token", options).body)
+
+          if response["access_token"].nil?
+            raise "Etsy token refresh failed: #{response}"
+          end
+
           etsy_account.access_token = response["access_token"]
           etsy_account.expires_in = response["expires_in"]
           etsy_account.refresh_token = response["refresh_token"]
