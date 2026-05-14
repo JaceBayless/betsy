@@ -66,6 +66,32 @@ Betsy::UserAddress.get_user_addresses(etsy_account: EtsyAccount.first)
 
 By default, Betsy handles the refreshing of authentication tokens for you.
 
+## Migrating from v0.2.x to v0.3.x
+
+### Account model requires `token_expired?`
+
+In v0.3.0, the token expiration check was moved out of the gem and into your account model. You need to add a `token_expired?` method to your `EtsyAccount` model (or whatever model you configured via `Betsy.account_model`):
+
+```ruby
+class EtsyAccount < ApplicationRecord
+  def token_expired?
+    last_token_refresh.nil? || expires_in.nil? || last_token_refresh + expires_in <= DateTime.now
+  end
+end
+```
+
+This gives you full control over the expiration logic. For example, you could add a buffer to refresh tokens early:
+
+```ruby
+def token_expired?
+  last_token_refresh.nil? || expires_in.nil? || last_token_refresh + expires_in - 5.minutes <= DateTime.now
+end
+```
+
+### Faraday removed
+
+Betsy no longer depends on Faraday. It uses Ruby's built-in `Net::HTTP` instead. If your app was relying on Betsy to pull in Faraday, you'll need to add it to your own Gemfile.
+
 ## License
 
 The gem is available as open-source under the terms of the [MIT License](https://opensource.org/licenses/MIT).

@@ -65,6 +65,12 @@ describe Betsy::Model do
   end
 
   describe "ClassMethods#check_token_expiration" do
+    it "delegates to token_expired? on the account model" do
+      etsy_account = EtsyAccount.create!(access_token: "token", refresh_token: "refresh", expires_in: 1000, state: "state", code_verifier: "code_verifier", last_token_refresh: DateTime.now)
+      expect(etsy_account).to receive(:token_expired?).and_return(false)
+      Betsy::Test.check_token_expiration(etsy_account)
+    end
+
     it "does not attempt to refresh the token if it is not expired" do
       start_time = DateTime.now
       etsy_account = EtsyAccount.create!(access_token: "token", refresh_token: "refresh", expires_in: 1000, state: "state", code_verifier: "code_verifier", last_token_refresh: start_time)
@@ -85,6 +91,36 @@ describe Betsy::Model do
       expect(etsy_account.refresh_token).to eq "refreshed_refresh_token"
       expect(etsy_account.last_token_refresh).to be > DateTime.now - 60
     end
+
+    it "triggers a refresh when expires_in is nil instead of crashing" do
+      stub_request(:post, "https://api.etsy.com/v3/public/oauth/token")
+        .to_return(status: 200, body: '{"access_token": "refreshed_token", "expires_in": 3600, "refresh_token": "refreshed_refresh_token"}')
+      etsy_account = EtsyAccount.create!(access_token: "token", refresh_token: "refresh", expires_in: nil, state: "state", code_verifier: "code_verifier", last_token_refresh: DateTime.now)
+      Betsy::Test.check_token_expiration(etsy_account)
+      expect(etsy_account.access_token).to eq "refreshed_token"
+      expect(etsy_account.expires_in).to eq 3600
+      expect(etsy_account.refresh_token).to eq "refreshed_refresh_token"
+    end
+
+    it "triggers a refresh when last_token_refresh is nil instead of crashing" do
+      stub_request(:post, "https://api.etsy.com/v3/public/oauth/token")
+        .to_return(status: 200, body: '{"access_token": "refreshed_token", "expires_in": 3600, "refresh_token": "refreshed_refresh_token"}')
+      etsy_account = EtsyAccount.create!(access_token: "token", refresh_token: "refresh", expires_in: 3600, state: "state", code_verifier: "code_verifier", last_token_refresh: nil)
+      Betsy::Test.check_token_expiration(etsy_account)
+      expect(etsy_account.access_token).to eq "refreshed_token"
+      expect(etsy_account.expires_in).to eq 3600
+      expect(etsy_account.refresh_token).to eq "refreshed_refresh_token"
+    end
+
+    it "raises an error and does not save nil credentials when the refresh response has no access_token" do
+      stub_request(:post, "https://api.etsy.com/v3/public/oauth/token")
+        .to_return(status: 200, body: '{"error": "invalid_grant"}')
+      etsy_account = EtsyAccount.create!(access_token: "token", refresh_token: "refresh", expires_in: 0, state: "state", code_verifier: "code_verifier", last_token_refresh: DateTime.now - 60)
+      expect { Betsy::Test.check_token_expiration(etsy_account) }.to raise_error(RuntimeError, /Etsy token refresh failed/)
+      expect(etsy_account.access_token).to eq "token"
+      expect(etsy_account.expires_in).to eq 0
+      expect(etsy_account.refresh_token).to eq "refresh"
+    end
   end
 
   describe "ClassMethods#access_credentials" do
@@ -101,13 +137,13 @@ describe Betsy::Model do
   describe "ClassMethods#handle_response" do
     it "returns one object if count is present in response" do
       stub_request(:get, "https://www.testing.com").to_return(status: 200, body: '{"test_attr": "test"}')
-      expect(Betsy::Test.handle_response(Faraday.get("https://www.testing.com"))).to be_kind_of(Betsy::Test)
+      expect(Betsy::Test.handle_response(Net::HTTP.get_response(URI("https://www.testing.com")))).to be_kind_of(Betsy::Test)
     end
 
     it "returns multiple objects if count is present in response" do
       stub_request(:get, "https://www.testing.com")
         .to_return(status: 200, body: '{ "count": 2, "results": [{ "test_attr": "test1" }, { "test_attr": "test2" }] }')
-      response = Betsy::Test.handle_response(Faraday.get("https://www.testing.com"))
+      response = Betsy::Test.handle_response(Net::HTTP.get_response(URI("https://www.testing.com")))
       expect(response).to be_an_instance_of(Array)
       expect(response.count).to eq 2
     end
@@ -115,7 +151,7 @@ describe Betsy::Model do
     it "returns a Betsy::Error when the return status is not 200" do
       stub_request(:get, "https://www.testing.com")
         .to_return(status: 500, body: '{ "error": "string" }')
-      response = Betsy::Test.handle_response(Faraday.get("https://www.testing.com"))
+      response = Betsy::Test.handle_response(Net::HTTP.get_response(URI("https://www.testing.com")))
       expect(response).to be_kind_of Betsy::Error
       expect(response.status).to eq 500
       expect(response.error).to eq "string"
@@ -126,7 +162,7 @@ describe Betsy::Model do
     it "builds multiple objects when there is there are multiple results" do
       stub_request(:get, "https://www.testing.com")
         .to_return(status: 200, body: '{ "count": 2, "results": [{ "test_attr": "test1" }, { "test_attr": "test2" }] }')
-      body = JSON.parse(Faraday.get("https://www.testing.com").body)
+      body = JSON.parse(Net::HTTP.get_response(URI("https://www.testing.com")).body)
       response = Betsy::Test.build_objects(body)
       expect(response).to be_an_instance_of Array
       expect(response.first).to be_kind_of Betsy::Test
@@ -135,7 +171,7 @@ describe Betsy::Model do
     it "returns a single object when there is only one result" do
       stub_request(:get, "https://www.testing.com")
         .to_return(status: 200, body: '{ "test_attr": "test1" }')
-      body = JSON.parse(Faraday.get("https://www.testing.com").body)
+      body = JSON.parse(Net::HTTP.get_response(URI("https://www.testing.com")).body)
       response = Betsy::Test.build_objects(body)
       expect(response).to be_kind_of Betsy::Test
       expect(response.test_attr).to eq "test1"

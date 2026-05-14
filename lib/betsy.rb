@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 require "active_support"
-require "faraday"
+require "net/http"
+require "uri"
+require "json"
 
 require_relative "betsy/version"
 require_relative "betsy/model"
@@ -95,7 +97,7 @@ module Betsy
         code: params[:code],
         code_verifier: etsy_account.code_verifier
       }
-      response = JSON.parse(Faraday.post("https://api.etsy.com/v3/public/oauth/token", options).body)
+      response = JSON.parse(Net::HTTP.post_form(URI("https://api.etsy.com/v3/public/oauth/token"), options).body)
       etsy_account.access_token = response["access_token"]
       etsy_account.refresh_token = response["refresh_token"]
       etsy_account.expires_in = response["expires_in"]
